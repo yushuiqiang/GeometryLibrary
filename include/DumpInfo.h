@@ -5,10 +5,10 @@
 #include <map>
 #include <string>
 
-#define GPPDUMPAPI 0
-
 namespace GPP
 {
+    static bool GppDumpApi = 0;
+
     enum ApiName
     {
         MESH_CONSOLIDATION_LAPLACESMOOTH,
