@@ -7,8 +7,6 @@
 
 namespace GPP
 {
-    static bool GppDumpApi = 0;
-
     enum ApiName
     {
         MESH_CONSOLIDATION_LAPLACESMOOTH,
@@ -19,6 +17,7 @@ namespace GPP
         MESH_SUBDIVISION_CC,
         MESH_SUBDIVISION_REFINE,
         MESH_SIMPLIFICATION_QUADRIC,
+        MESH_DECOMPOSE_HEIGHTFIELD,
         POINT_CONSOLIDATION_LAPLACESMOOTH,
         POINT_CONSOLIDATION_NORMALCALCULATION,
         POINT_RECONSTRUCTION_POISSON,
@@ -67,4 +66,6 @@ namespace GPP
     };
 
     extern GPP_EXPORT void RegisterDumpInfo(void);
+
+    extern const bool GppDumpApi;
 }

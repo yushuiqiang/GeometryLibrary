@@ -71,4 +71,19 @@ namespace GPP
     private:
         LinearSparseLUSolverImpl* mpImpl;
     };
+
+    class LeastSquareSparseLUSolverImpl;
+    class LeastSquareSparseLUSolver
+    {
+    public:
+        LeastSquareSparseLUSolver();
+        ~LeastSquareSparseLUSolver();
+
+        Int Factorize(const SparseMatrix& sparseMatrix);
+        Int Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
+        void Free(void);
+
+    private:
+        LeastSquareSparseLUSolverImpl* mpImpl;
+    };
 }
