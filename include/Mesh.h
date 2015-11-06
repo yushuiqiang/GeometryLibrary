@@ -165,6 +165,7 @@ namespace GPP
         Int GetEdgeCount() const;
         Int GetFaceCount() const;
 
+        void ReserveVertex(Int vertexCount);
         void InsertVertex(Vertex3D* vertex);
         Vertex3D* InsertVertex(const Vector3& coord);
         Edge3D*   InsertEdge(Vertex3D* vertexStart, Vertex3D* vertexEnd);
