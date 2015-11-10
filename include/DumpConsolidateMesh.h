@@ -56,11 +56,12 @@ namespace GPP
         virtual Int Run(void);
         virtual TriMesh* GetTriMesh(void);
 
-        void DumpApiInfo(const ITriMesh* triMesh, Real angleTol, Real edgeLengthTol);
+        void DumpApiInfo(const ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
 
     private:
         TriMesh* mpTriMesh;
-        Real mAngleTol;
-        Real mEdgeLengthTol;
+        Real mMinTriangleAngle;
+        Real mMinEdgeLength;
+        Real mFoldoverAngleTol;
     }; 
 }

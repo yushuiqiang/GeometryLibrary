@@ -1,0 +1,139 @@
+#pragma once
+#include "Vector3.h"
+#include <vector>
+#include <map>
+
+namespace GPP
+{
+    class Edge3D;
+    class GPP_EXPORT Vertex3D
+    {
+    public:
+        Vertex3D();
+        Vertex3D(const Vector3& coord);
+        Vertex3D(const Vector3& coord, const Vector3& normal);
+
+        Vector3 GetCoord() const;
+        void    SetCoord(const Vector3& coord);
+        Vector3 GetNormal() const;
+        void    SetNormal(const Vector3& normal);
+        Edge3D* GetEdge();
+        const Edge3D* GetEdge() const;
+        void    SetEdge(Edge3D* edge);
+        Int     GetId() const;
+        void    SetId(Int id);
+        Int     GetEdgeMapId(void) const;
+        void    SetEdgeMapId(Int id);
+        Int     GetDegree(void) const;
+
+        ~Vertex3D();
+
+    private:
+        Int     mId;
+        Int     mEdgeMapId;
+        Edge3D* mpEdge;
+        Vector3 mCoord;
+        Vector3 mNormal;  
+    };
+
+    class Face3D;
+    class GPP_EXPORT Edge3D
+    {
+    public:
+        Edge3D();
+
+        Vertex3D* GetVertex();
+        const Vertex3D* GetVertex() const;
+        void      SetVertex(Vertex3D* vertex);
+        Edge3D*   GetPair();
+        const Edge3D* GetPair() const;
+        void      SetPair(Edge3D* edge);
+        Edge3D*   GetNext();
+        const Edge3D* GetNext() const;
+        void      SetNext(Edge3D* edge);
+        Edge3D*   GetPre();
+        const Edge3D* GetPre() const;
+        void      SetPre(Edge3D* edge);
+        Face3D*   GetFace();
+        const Face3D* GetFace() const;
+        void      SetFace(Face3D* face);
+        Int       GetId() const;
+        void      SetId(Int id);
+
+        ~Edge3D();
+
+    private:
+        Int       mId;
+        Vertex3D* mpVertex;
+        Edge3D*   mpPair;
+        Edge3D*   mpNext;
+        Edge3D*   mpPre;
+        Face3D*   mpFace;
+    };
+
+    class GPP_EXPORT Face3D
+    {
+    public:
+        Face3D();
+
+        Edge3D* GetEdge();
+        const Edge3D* GetEdge() const;
+        void    SetEdge(Edge3D* edge);
+        Vector3 GetNormal() const;
+        void    SetNormal(const Vector3& normal);
+        Int     GetId() const;
+        void    SetId(Int id);
+
+        ~Face3D();
+
+    private:
+        Int     mId;
+        Edge3D* mpEdge;
+        Vector3 mNormal;
+    };
+
+    class GPP_EXPORT HalfMesh
+    {
+    public:
+        HalfMesh();
+        
+        Vertex3D* GetVertex(Int vid);
+        const Vertex3D* GetVertex(Int vid) const;
+        Edge3D* GetEdge(Int eid);
+        const Edge3D* GetEdge(Int eid) const;
+        Face3D* GetFace(Int fid);
+        const Face3D* GetFace(Int fid) const;
+        Int GetVertexCount() const;
+        Int GetEdgeCount() const;
+        Int GetFaceCount() const;
+
+        void ReserveVertex(Int vertexCount);
+        void ReserveEdge(Int edgeCount);
+        void ReserveFace(Int faceCount);
+        Vertex3D* InsertVertex(const Vector3& coord);
+        Vertex3D* InsertVertex(const Vector3& coord, const Vector3& normal);
+        Edge3D*   InsertEdge(Vertex3D* vertexStart, Vertex3D* vertexEnd);
+        Face3D*   InsertFace(const std::vector<Vertex3D* >& vertexList);
+
+        void UnifyCoords(Real bboxSize);
+        void UpdateNormal(bool onlyFaceNormal = false);
+        void ValidateTopology();
+        void SetBoundaryVertexEdge();
+        void RemoveEdgeFromEdgeMap(Edge3D* edge);
+        void ClearEdgeMap(void);
+        void UpdateVertexIndex();
+        void UpdateEdgeIndex();
+        void UpdateFaceIndex();
+
+        Int ContractInnerEdge(Int edgeId, bool updateEdgeMap);
+
+        ~HalfMesh();
+
+    private:
+        std::vector<Vertex3D* > mVertexList;
+        std::vector<Edge3D* >   mEdgeList;
+        std::vector<Face3D* >   mFaceList;
+        std::vector<std::map<Int, Edge3D*> > mEdgeMap;
+        Int mEdgeMapNewVertexId;
+    };
+}
