@@ -29,8 +29,8 @@ namespace GPP
         ~Vertex3D();
 
     private:
-        Int     mId;
-        Int     mEdgeMapId;
+        Int     mId;    // mId is the index of mVertexList in HalfMesh
+        Int     mEdgeMapId;    // mEdgeMapId is used in construct edge map in HalfMesh, this value will not be changed
         Edge3D* mpEdge;
         Vector3 mCoord;
         Vector3 mNormal;  
@@ -63,7 +63,7 @@ namespace GPP
         ~Edge3D();
 
     private:
-        Int       mId;
+        Int       mId;    // mId is the index of mEdgeList in HalfMesh
         Vertex3D* mpVertex;
         Edge3D*   mpPair;
         Edge3D*   mpNext;
@@ -87,7 +87,7 @@ namespace GPP
         ~Face3D();
 
     private:
-        Int     mId;
+        Int     mId;    // mId is the index of mFaceList in HalfMesh
         Edge3D* mpEdge;
         Vector3 mNormal;
     };
@@ -97,37 +97,60 @@ namespace GPP
     public:
         HalfMesh();
         
+        Int GetVertexCount() const;
+        Int GetEdgeCount() const;
+        Int GetFaceCount() const;
+
         Vertex3D* GetVertex(Int vid);
         const Vertex3D* GetVertex(Int vid) const;
         Edge3D* GetEdge(Int eid);
         const Edge3D* GetEdge(Int eid) const;
         Face3D* GetFace(Int fid);
         const Face3D* GetFace(Int fid) const;
-        Int GetVertexCount() const;
-        Int GetEdgeCount() const;
-        Int GetFaceCount() const;
-
+        
         void ReserveVertex(Int vertexCount);
         void ReserveEdge(Int edgeCount);
         void ReserveFace(Int faceCount);
         Vertex3D* InsertVertex(const Vector3& coord);
         Vertex3D* InsertVertex(const Vector3& coord, const Vector3& normal);
-        Edge3D*   InsertEdge(Vertex3D* vertexStart, Vertex3D* vertexEnd);
         Face3D*   InsertFace(const std::vector<Vertex3D* >& vertexList);
 
+        // Unify bounding box size as bboxSize, make the center of bounding box to origin point (0, 0, 0)
         void UnifyCoords(Real bboxSize);
+
+        // 1. Compute Face Normal
+        // 2. If onlyFaceNormal == false, compute vertex normal
         void UpdateNormal(bool onlyFaceNormal = false);
+        
+        // 1. Remove edges which have no face 
+        // 2. SetBoundaryVertexEdge
+        // 3. Remove dummy vertex
         void ValidateTopology();
+        
+        // Set boundary vertex's out edge (GetEdge) to be boundary half edge
         void SetBoundaryVertexEdge();
-        void RemoveEdgeFromEdgeMap(Edge3D* edge);
-        void ClearEdgeMap(void);
+        
+        // Erase NULL element from element list, and update element ids
         void UpdateVertexIndex();
         void UpdateEdgeIndex();
         void UpdateFaceIndex();
-
+        
+        // If you don't change topology later, you can clear edge map to free memory
+        void ClearEdgeMap(void);
+        
+        // It is used in Simply Mesh
+        // mEdgeList.at(edgeId) and its pair edge will be deleted, the related vertices, edges, faces will be updated
+        // mVertexList, mEdgeList, mFaceList will not erase the deleted elements, just set them to NULL
+        // If you want to erase the NULL elements, UpdateVertexIndex, UpdateEdgeIndex, UpdateFaceIndex can be used to do this
         Int ContractInnerEdge(Int edgeId, bool updateEdgeMap);
 
         ~HalfMesh();
+
+    private:
+        // InsertEdge is used in InsertFace
+        Edge3D* InsertEdge(Vertex3D* vertexStart, Vertex3D* vertexEnd);
+        
+        void RemoveEdgeFromEdgeMap(Edge3D* edge);
 
     private:
         std::vector<Vertex3D* > mVertexList;

@@ -54,7 +54,8 @@ namespace GPP
         virtual void UpdateNormal(void);     
         virtual void Clear(void);
 
-        //void DeleteTriangles(const std::vector<int>& deleteTriangleIndex);
+        // This is used in STL mesh structure, since STL format has no topology information.
+        // FuseVertex will make vertices as one vertex if their coorindates' distance is small enough
         void FuseVertex(void);
 
         void SetMeshType(MeshType meshType);
