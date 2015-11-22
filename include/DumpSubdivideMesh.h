@@ -3,17 +3,18 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpMeshSubdivisionLoop(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshSubdivisionLoop(void);
 
-    class DumpMeshSubdivisionLoop : public DumpBase
+    class GPP_EXPORT DumpMeshSubdivisionLoop : public DumpBase
     {
     public:
         DumpMeshSubdivisionLoop();
         ~DumpMeshSubdivisionLoop();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh);
 
@@ -22,17 +23,18 @@ namespace GPP
     };
 
     
-    extern DumpBase* CreateDumpMeshSubdivisionCC(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshSubdivisionCC(void);
 
-    class DumpMeshSubdivisionCC : public DumpBase
+    class GPP_EXPORT DumpMeshSubdivisionCC : public DumpBase
     {
     public:
         DumpMeshSubdivisionCC();
         ~DumpMeshSubdivisionCC();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh);
 
@@ -41,17 +43,18 @@ namespace GPP
     }; 
 
 
-    extern DumpBase* CreateDumpMeshSubdivisionRefine(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshSubdivisionRefine(void);
 
-    class DumpMeshSubdivisionRefine : public DumpBase
+    class GPP_EXPORT DumpMeshSubdivisionRefine : public DumpBase
     {
     public:
         DumpMeshSubdivisionRefine();
         ~DumpMeshSubdivisionRefine();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh, Int targetVertexCount);
 

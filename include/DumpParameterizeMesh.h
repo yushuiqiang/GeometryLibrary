@@ -3,17 +3,18 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpMeshParameterizationABF(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshParameterizationABF(void);
 
-    class DumpMeshParameterizationABF : public DumpBase
+    class GPP_EXPORT DumpMeshParameterizationABF : public DumpBase
     {
     public:
         DumpMeshParameterizationABF();
         ~DumpMeshParameterizationABF();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh);
 

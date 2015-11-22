@@ -9,14 +9,14 @@ namespace GPP
         ConsolidateMesh();
         ~ConsolidateMesh();
 
-        static Int LaplaceSmooth(ITriMesh* triMesh, Real percentage, Int times, bool keepBoundary);
+        static ErrorCode LaplaceSmooth(ITriMesh* triMesh, Real percentage, Int times, bool keepBoundary);
 
         static bool IsTriMeshManifold(ITriMesh* triMesh);
 
-        static Int MakeTriMeshManifold(ITriMesh* triMesh);
+        static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh);
 
-        static Int ExtractLargeTriMeshPart(ITriMesh* triMesh, int partCount);
+        static ErrorCode ExtractLargeTriMeshPart(ITriMesh* triMesh, int partCount);
 
-        static Int ConsolidateGeometry(ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
+        static ErrorCode ConsolidateGeometry(ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
     };
 }

@@ -10,6 +10,6 @@ namespace GPP
         DecomposeMesh();
         ~DecomposeMesh();
 
-        static Int DecomposeHeightField(ITriMesh* triMesh, std::vector<Real>* heightField, std::vector<Vector3>* baseMeshCoords, std::vector<Vector3>* baseMeshNormals);
+        static ErrorCode DecomposeHeightField(ITriMesh* triMesh, std::vector<Real>* heightField, std::vector<Vector3>* baseMeshCoords, std::vector<Vector3>* baseMeshNormals);
     };
 }

@@ -64,8 +64,8 @@ namespace GPP
         LinearSparseLUSolver();
         ~LinearSparseLUSolver();
 
-        Int Factorize(const SparseMatrix& sparseMatrix);
-        Int Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
+        ErrorCode Factorize(const SparseMatrix& sparseMatrix);
+        ErrorCode Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
         void Free(void);
 
     private:
@@ -73,14 +73,14 @@ namespace GPP
     };
 
     class LeastSquareSparseLUSolverImpl;
-    class LeastSquareSparseLUSolver
+    class GPP_EXPORT LeastSquareSparseLUSolver
     {
     public:
         LeastSquareSparseLUSolver();
         ~LeastSquareSparseLUSolver();
 
-        Int Factorize(const SparseMatrix& sparseMatrix);
-        Int Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
+        ErrorCode Factorize(const SparseMatrix& sparseMatrix);
+        ErrorCode Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
         void Free(void);
 
     private:

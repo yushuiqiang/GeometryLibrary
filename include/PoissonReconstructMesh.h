@@ -11,6 +11,6 @@ namespace GPP
         PoissonReconstructMesh();
         ~PoissonReconstructMesh();
 
-        static Int Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh);
+        static ErrorCode Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh);
     };
 }

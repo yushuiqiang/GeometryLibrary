@@ -44,11 +44,13 @@ namespace GPP
 
         Vector3 GetPointColor(Int pid) const;
         void SetPointColor(Int pid, const Vector3& color);
+
+        void ReservePoint(Int pointCount);
         Int InsertPoint(const Vector3& coord);
         Int InsertPoint(const Vector3& coord, const Vector3& normal);
         void UpdatePointId(void);
-        void UnifyCoords(Real bboxSize);
-        
+        void UnifyCoords(Real bboxSize, Real* scaleValue = NULL, Vector3* objCenterCoord = NULL);
+        void UnifyCoords(Real scaleValue, const Vector3& objCenterCoord);
 
         virtual ~PointCloud();
 

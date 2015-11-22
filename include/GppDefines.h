@@ -22,6 +22,15 @@
 #define GPPFREEPOINTER(pointer) if ((pointer) != NULL) { delete (pointer); (pointer) = NULL; }
 #define GPPFREEARRAY(pointer) if ((pointer) != NULL) { delete [](pointer); (pointer) = NULL; }
 
+// Error Codes
+#define GPP_NO_ERROR           0
+#define GPP_EMPTY_INPUT       -1
+#define GPP_INVALID_INPUT     -2
+#define GPP_INVALID_RESULT    -3
+#define GPP_NOT_ENOUGH_INPUT  -4
+#define GPP_NOT_INITIALIZED   -5
+#define GPP_API_IS_NOT_AVAILABLE -6
+
 namespace GPP
 {
     typedef double Real;
@@ -29,6 +38,7 @@ namespace GPP
     typedef unsigned int UInt;
     typedef long long LongInt;
     typedef unsigned long long ULongInt;
+    typedef int ErrorCode;
     extern GPP_EXPORT const Real REAL_TOL;
     extern GPP_EXPORT const Real REAL_LARGE;
     

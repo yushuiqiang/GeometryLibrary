@@ -7,7 +7,7 @@
 
 namespace GPP
 {
-    enum ApiName
+    enum GPP_EXPORT ApiName
     {
         MESH_CONSOLIDATION_LAPLACESMOOTH,
         MESH_CONSOLIDATION_MAKEMANIFOLD,
@@ -21,7 +21,9 @@ namespace GPP
         POINT_CONSOLIDATION_LAPLACESMOOTH,
         POINT_CONSOLIDATION_NORMALCALCULATION,
         POINT_RECONSTRUCTION_POISSON,
-        POINT_SAMPLING_UNIFORM
+        POINT_SAMPLING_UNIFORM,
+        POINT_REGISTRATION_ALIGNPOINTPAIR,
+        POINT_REGISTRATION_ICP
     };
 
     class ITriMesh;
@@ -34,10 +36,11 @@ namespace GPP
         DumpBase();
         ~DumpBase();
 
+        virtual ApiName GetApiName(void) = 0;
         virtual void LoadDumpFile(const std::string& fileName) = 0;
-        virtual Int Run(void) = 0;
-        virtual TriMesh* GetTriMesh(void);
-        virtual PointCloud* GetPointCloud(void);
+        virtual ErrorCode Run(void) = 0;
+        virtual TriMesh* GetTriMesh(Int id = 0);
+        virtual PointCloud* GetPointCloud(Int id = 0);
 
         static Int APICalledTime;
     

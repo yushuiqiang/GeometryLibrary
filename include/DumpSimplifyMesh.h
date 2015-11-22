@@ -3,17 +3,18 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpMeshSimplificationQuadric(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshSimplificationQuadric(void);
 
-    class DumpMeshSimplificationQuadric : public DumpBase
+    class GPP_EXPORT DumpMeshSimplificationQuadric : public DumpBase
     {
     public:
         DumpMeshSimplificationQuadric();
         ~DumpMeshSimplificationQuadric();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh, Int targetVertexCount);
 

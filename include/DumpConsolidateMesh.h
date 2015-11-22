@@ -3,17 +3,18 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpMeshConsolidationLaplaceSmooth(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshConsolidationLaplaceSmooth(void);
 
-    class DumpMeshConsolidationLaplaceSmooth : public DumpBase
+    class GPP_EXPORT DumpMeshConsolidationLaplaceSmooth : public DumpBase
     {
     public:
         DumpMeshConsolidationLaplaceSmooth();
         ~DumpMeshConsolidationLaplaceSmooth();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh, Real percentage, Int times, bool keepBoundary);
 
@@ -25,17 +26,18 @@ namespace GPP
     };
 
     
-    extern DumpBase* CreateDumpMeshConsolidationMakeManifold(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshConsolidationMakeManifold(void);
 
-    class DumpMeshConsolidationMakeManifold : public DumpBase
+    class GPP_EXPORT DumpMeshConsolidationMakeManifold : public DumpBase
     {
     public:
         DumpMeshConsolidationMakeManifold();
         ~DumpMeshConsolidationMakeManifold();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh);
 
@@ -44,17 +46,18 @@ namespace GPP
     }; 
 
 
-    extern DumpBase* CreateDumpMeshConsolidationGeometry(void);
+    extern GPP_EXPORT DumpBase* CreateDumpMeshConsolidationGeometry(void);
 
-    class DumpMeshConsolidationGeometry : public DumpBase
+    class GPP_EXPORT DumpMeshConsolidationGeometry : public DumpBase
     {
     public:
         DumpMeshConsolidationGeometry();
         ~DumpMeshConsolidationGeometry();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual TriMesh* GetTriMesh(void);
+        virtual ErrorCode Run(void);
+        virtual TriMesh* GetTriMesh(Int id = 0);
 
         void DumpApiInfo(const ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
 

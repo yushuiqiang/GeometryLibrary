@@ -3,7 +3,7 @@
 
 namespace GPP
 {
-    class Plane3
+    class GPP_EXPORT Plane3
     {
     public:
         Plane3(const Vector3& point0, const Vector3& point1, const Vector3& point2);

@@ -3,18 +3,19 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpPointCloudConsolidationLaplaceSmooth(void);
+    extern GPP_EXPORT DumpBase* CreateDumpPointCloudConsolidationLaplaceSmooth(void);
 
     class PointCloud;
-    class DumpPointCloudConsolidationLaplaceSmooth : public DumpBase
+    class GPP_EXPORT DumpPointCloudConsolidationLaplaceSmooth : public DumpBase
     {
     public:
         DumpPointCloudConsolidationLaplaceSmooth();
         ~DumpPointCloudConsolidationLaplaceSmooth();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual PointCloud* GetPointCloud(void);
+        virtual ErrorCode Run(void);
+        virtual PointCloud* GetPointCloud(Int id = 0);
 
         void DumpApiInfo(const IPointCloud* pointCloud, Real percentage, Int times);
 
@@ -25,17 +26,18 @@ namespace GPP
     };
 
     
-    extern DumpBase* CreateDumpPointCloudConsolidationNormalCalculation(void);
+    extern GPP_EXPORT DumpBase* CreateDumpPointCloudConsolidationNormalCalculation(void);
 
-    class DumpPointCloudConsolidationNormalCalculation : public DumpBase
+    class GPP_EXPORT DumpPointCloudConsolidationNormalCalculation : public DumpBase
     {
     public:
         DumpPointCloudConsolidationNormalCalculation();
         ~DumpPointCloudConsolidationNormalCalculation();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual PointCloud* GetPointCloud(void);
+        virtual ErrorCode Run(void);
+        virtual PointCloud* GetPointCloud(Int id = 0);
 
         void DumpApiInfo(const IPointCloud* pointCloud, Int quality);
 

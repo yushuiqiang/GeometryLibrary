@@ -9,6 +9,6 @@ namespace GPP
         SimplifyMesh();
         ~SimplifyMesh();
 
-        static Int QuadricSimplify(ITriMesh* triMesh, Int targetVertexCount);
+        static ErrorCode QuadricSimplify(ITriMesh* triMesh, Int targetVertexCount);
     };
 }

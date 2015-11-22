@@ -10,10 +10,10 @@ namespace GPP
         ~SubdivideMesh();
 
         // Catmull-Clark subdivision
-        static Int CCSubdivideMesh(ITriMesh* triMesh);
+        static ErrorCode CCSubdivideMesh(ITriMesh* triMesh);
 
-        static Int LoopSubdivideMesh(ITriMesh* triMesh);
+        static ErrorCode LoopSubdivideMesh(ITriMesh* triMesh);
 
-        static Int RefineMesh(ITriMesh* triMesh, Int targetVertexCount);
+        static ErrorCode RefineMesh(ITriMesh* triMesh, Int targetVertexCount);
     };
 }

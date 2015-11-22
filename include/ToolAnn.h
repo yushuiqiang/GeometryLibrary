@@ -10,8 +10,8 @@ namespace GPP
         Ann();
         ~Ann();
 
-        Int Init(Real* refData, Int refCount, Int refDim);
-        Int FindNearestNeighbors(Real* searchData, Int searchCount, Int neighborCount, Int* indexRes, Real* distanceRes);
+        ErrorCode Init(Real* refData, Int refCount, Int refDim);
+        ErrorCode FindNearestNeighbors(Real* searchData, Int searchCount, Int neighborCount, Int* indexRes, Real* distanceRes);
 
     private:
         AnnImpl* mpImpl;

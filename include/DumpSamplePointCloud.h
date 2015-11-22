@@ -3,18 +3,19 @@
 
 namespace GPP
 {
-    extern DumpBase* CreateDumpPointCloudSamplingUniform(void);
+    extern GPP_EXPORT DumpBase* CreateDumpPointCloudSamplingUniform(void);
 
     class PointCloud;
-    class DumpPointCloudSamplingUniform : public DumpBase
+    class GPP_EXPORT DumpPointCloudSamplingUniform : public DumpBase
     {
     public:
         DumpPointCloudSamplingUniform();
         ~DumpPointCloudSamplingUniform();
 
+        virtual ApiName GetApiName(void);
         virtual void LoadDumpFile(const std::string& fileName);
-        virtual Int Run(void);
-        virtual PointCloud* GetPointCloud(void);
+        virtual ErrorCode Run(void);
+        virtual PointCloud* GetPointCloud(Int id = 0);
 
         void DumpApiInfo(const IPointCloud* pointCloud, Int sampleCount);
 

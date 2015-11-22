@@ -9,8 +9,8 @@ namespace GPP
         ConsolidatePointCloud();
         ~ConsolidatePointCloud();
 
-        static Int LaplaceSmooth(IPointCloud* pointCloud, Real percentage, Int times);
+        static ErrorCode LaplaceSmooth(IPointCloud* pointCloud, Real percentage, Int times);
 
-        static Int CalculatePointCloudNormal(IPointCloud* pointCloud, Int quality = 0);
+        static ErrorCode CalculatePointCloudNormal(IPointCloud* pointCloud, Int quality = 0);
     };
 }

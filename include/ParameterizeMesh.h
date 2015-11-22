@@ -10,6 +10,6 @@ namespace GPP
         ParameterizeMesh();
         ~ParameterizeMesh();
 
-        static Int AnglePreservingParameterize(const ITriMesh* triMesh, std::vector<Real>* texCoords);
+        static ErrorCode AnglePreservingParameterize(const ITriMesh* triMesh, std::vector<Real>* texCoords);
     };
 }

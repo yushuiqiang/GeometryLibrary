@@ -9,6 +9,6 @@ namespace GPP
         SamplePointCloud();
         ~SamplePointCloud();
 
-        static Int UniformSample(const IPointCloud* pointCloud, Int sampleCount, Int* sampleIndex);
+        static ErrorCode UniformSample(const IPointCloud* pointCloud, Int sampleCount, Int* sampleIndex, Int seedId = 0);
     };
 }

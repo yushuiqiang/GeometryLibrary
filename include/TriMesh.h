@@ -42,8 +42,11 @@ namespace GPP
         virtual void GetTriangleVertexIds(Int fid, Int vertexIds[3]) const;
         virtual void SetTriangleVertexIds(Int fid, Int vertexId0, Int vertexId1, Int vertexId2);
 
+        // Return inserted triangle id
         virtual Int InsertTriangle(Int vertexId0, Int vertexId1, Int vertexId2);
+        // Return inserted vertex id
         virtual Int InsertVertex(const Vector3& coord);   
+        // Return inserted vertex id
         Int InsertVertex(const Vector3& coord, const Vector3& normal);
 
         virtual void SwapVertex(Int vertexId0, Int vertexId1); 

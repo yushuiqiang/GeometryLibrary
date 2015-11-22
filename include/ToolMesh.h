@@ -12,11 +12,11 @@ namespace GPP
     extern GPP_EXPORT HalfMesh* CreateHalfMeshFromITriMesh(const ITriMesh* triMesh);
 
     //inputMesh should not be null
-    extern GPP_EXPORT Int ConvertTriMeshToITriMesh(const TriMesh* inputMesh, ITriMesh* convertedMesh);
+    extern GPP_EXPORT ErrorCode ConvertTriMeshToITriMesh(const TriMesh* inputMesh, ITriMesh* convertedMesh);
     
     //triMesh should not be null
     //halfMesh should UpdateVertexIndex before calling
-    extern GPP_EXPORT Int ConvertHalfMeshToITriMesh(const HalfMesh* halfMesh, ITriMesh* triMesh);
+    extern GPP_EXPORT ErrorCode ConvertHalfMeshToITriMesh(const HalfMesh* halfMesh, ITriMesh* triMesh);
 
     //Deep Copy
     extern GPP_EXPORT TriMesh* CopyTriMesh(const TriMesh* triMesh);

@@ -25,6 +25,21 @@ namespace GPP
         GeneralMatrixImpl* mpImpl;
     };
 
+    class LeastSquareGeneralLDLSolverImpl;
+    class GPP_EXPORT LeastSquareGeneralLDLSolver
+    {
+    public:
+        LeastSquareGeneralLDLSolver();
+        ~LeastSquareGeneralLDLSolver();
+
+        ErrorCode Factorize(const GeneralMatrix& generalMatrix);
+        ErrorCode Solve(const std::vector<Real>& vecB, std::vector<Real>* result);
+        void Free(void);
+
+    private:
+        LeastSquareGeneralLDLSolverImpl* mpImpl;
+    };
+
     class SelfAdjointEigenSolverImpl;
     class GPP_EXPORT SelfAdjointEigenSolver
     {
@@ -32,7 +47,7 @@ namespace GPP
         SelfAdjointEigenSolver();
         ~SelfAdjointEigenSolver();
 
-        Int Compute(const GeneralMatrix& generalMatrix);
+        ErrorCode Compute(const GeneralMatrix& generalMatrix);
         
         std::vector<Real> GetEigenVector(Int index) const;
 

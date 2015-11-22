@@ -142,7 +142,7 @@ namespace GPP
         // mEdgeList.at(edgeId) and its pair edge will be deleted, the related vertices, edges, faces will be updated
         // mVertexList, mEdgeList, mFaceList will not erase the deleted elements, just set them to NULL
         // If you want to erase the NULL elements, UpdateVertexIndex, UpdateEdgeIndex, UpdateFaceIndex can be used to do this
-        Int ContractInnerEdge(Int edgeId, bool updateEdgeMap);
+        ErrorCode ContractInnerEdge(Int edgeId, bool updateEdgeMap);
 
         ~HalfMesh();
 
