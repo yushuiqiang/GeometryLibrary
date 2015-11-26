@@ -15,7 +15,10 @@ namespace GPP
         virtual void SetVertexCoord(Int vid, const Vector3& coord) = 0;
         virtual Vector3 GetVertexNormal(Int vid) const = 0;
         virtual void SetVertexNormal(Int vid, const Vector3& normal) = 0;
+
+        // vertexIds are in a consistent order in all connected triangles
         virtual void GetTriangleVertexIds(Int fid, Int vertexIds[3]) const = 0;
+        // make sure vertexIdx are in a consistent order in its connected triangles
         virtual void SetTriangleVertexIds(Int fid, Int vertexId0, Int vertexId1, Int vertexId2) = 0;
         
         // Return inserted triangle id

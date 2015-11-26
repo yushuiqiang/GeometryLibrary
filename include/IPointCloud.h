@@ -15,6 +15,10 @@ namespace GPP
         virtual void SetPointNormal(Int pid, const Vector3& normal) = 0;
         virtual bool HasNormal() const = 0;
         virtual void SetHasNormal(bool has) = 0;
+        // Return inserted triangle id
+        virtual Int InsertPoint(const Vector3& coord) = 0;
+        // Return inserted triangle id
+        virtual Int InsertPoint(const Vector3& coord, const Vector3& normal) = 0;
 
         virtual ~IPointCloud(){};
     };

@@ -41,14 +41,15 @@ namespace GPP
         virtual void SetPointNormal(Int pid, const Vector3& normal);
         virtual bool HasNormal() const;
         virtual void SetHasNormal(bool has);
+        // Return inserted triangle id
+        virtual Int InsertPoint(const Vector3& coord);
+        // Return inserted triangle id
+        virtual Int InsertPoint(const Vector3& coord, const Vector3& normal);
 
         Vector3 GetPointColor(Int pid) const;
         void SetPointColor(Int pid, const Vector3& color);
 
         void ReservePoint(Int pointCount);
-        Int InsertPoint(const Vector3& coord);
-        Int InsertPoint(const Vector3& coord, const Vector3& normal);
-        void UpdatePointId(void);
         void UnifyCoords(Real bboxSize, Real* scaleValue = NULL, Vector3* objCenterCoord = NULL);
         void UnifyCoords(Real scaleValue, const Vector3& objCenterCoord);
 
