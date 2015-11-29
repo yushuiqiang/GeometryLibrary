@@ -1,6 +1,5 @@
 #pragma once
 #include "DumpInfo.h"
-#include <vector>
 
 namespace GPP
 {
@@ -20,12 +19,10 @@ namespace GPP
         virtual TriMesh* GetTriMesh(Int id = 0);
         virtual PointCloud* GetPointCloud(Int id = 0);
 
-		void DumpApiInfo(const IPointCloud* pointCloud, Int quality, const std::vector<Real>* pointFields);
+        void DumpApiInfo(const IPointCloud* pointCloud);
 
     private:
         TriMesh* mpTriMesh;
         PointCloud* mpPointCloud;
-		Int mQuality;
-		std::vector<Real> mPointFields;
     };
 }
