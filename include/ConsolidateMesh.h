@@ -11,7 +11,7 @@ namespace GPP
 
         static ErrorCode LaplaceSmooth(ITriMesh* triMesh, Real percentage, Int times, bool keepBoundary);
 
-        static bool IsTriMeshManifold(ITriMesh* triMesh);
+        static bool IsTriMeshManifold(const ITriMesh* triMesh);
 
         static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh);
 
