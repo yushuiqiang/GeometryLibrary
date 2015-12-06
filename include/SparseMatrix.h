@@ -86,4 +86,21 @@ namespace GPP
     private:
         LeastSquareSparseLUSolverImpl* mpImpl;
     };
+
+    class LeastSquareSparseCGSolverImpl;
+    class LeastSquareSparseCGSolver
+    {
+    public:
+        LeastSquareSparseCGSolver();
+        ~LeastSquareSparseCGSolver();
+
+        void SetMaxIteration(Int maxCount);
+        void SetConvergentTolerance(Real tol);
+        ErrorCode Factorize(const SparseMatrix& sparseMatrix);
+        ErrorCode Solve(const std::vector<Real>& vecB, std::vector<Real>* result, const std::vector<Real>* initGuess = NULL);
+        void Free(void);
+
+    private:
+        LeastSquareSparseCGSolverImpl* mpImpl;
+    };
 }

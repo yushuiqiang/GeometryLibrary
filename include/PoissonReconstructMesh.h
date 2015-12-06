@@ -6,9 +6,9 @@ namespace GPP
 {
     enum ReconstructQuality
     {
-        RQ_LOW = 0,
-        RQ_MEDIUM,
-        RQ_HIGH
+        RECONSTRUCT_QUALITY_LOW = 0,
+        RECONSTRUCT_QUALITY_MEDIUM,
+        RECONSTRUCT_QUALITY_HIGH
     };
 
     class IPointCloud;
@@ -19,6 +19,6 @@ namespace GPP
         PoissonReconstructMesh();
         ~PoissonReconstructMesh();
 
-        static ErrorCode Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh, ReconstructQuality quality = RQ_MEDIUM, const std::vector<Real>* pointFields = NULL, std::vector<Real>* vertexField = NULL);
+        static ErrorCode Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh, ReconstructQuality quality = RECONSTRUCT_QUALITY_MEDIUM, const std::vector<Real>* pointFields = NULL, std::vector<Real>* vertexField = NULL);
     };
 }

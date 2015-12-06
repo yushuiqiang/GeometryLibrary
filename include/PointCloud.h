@@ -17,8 +17,6 @@ namespace GPP
         Vector3 GetNormal() const;
         void SetColor(const Vector3& color);
         Vector3 GetColor() const;
-        void SetId(int id);
-        int GetId() const;
 
         ~Point3D();
 
@@ -26,7 +24,6 @@ namespace GPP
         Vector3 mCoord;
         Vector3 mNormal;
         Vector3 mColor;
-        int mId;
     };
 
     class GPP_EXPORT PointCloud : public IPointCloud
@@ -45,6 +42,10 @@ namespace GPP
         virtual Int InsertPoint(const Vector3& coord);
         // Return inserted triangle id
         virtual Int InsertPoint(const Vector3& coord, const Vector3& normal);
+
+        virtual void SwapPoint(Int pointId0, Int pointId1); 
+        virtual void PopbackPoints(Int popCount);
+        virtual void Clear(void);
 
         Vector3 GetPointColor(Int pid) const;
         void SetPointColor(Int pid, const Vector3& color);
