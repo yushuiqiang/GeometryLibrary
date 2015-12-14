@@ -22,6 +22,6 @@ namespace GPP
         // and it will fill holes that at least one of its boundary vertices are in the seeds. 
         // NOTE: If the boundarySeedIds are empty or NULL, all the holes will be filled.
         static ErrorCode FillHoles(ITriMesh* triMesh, const std::vector<Int>* boundarySeedIds = NULL, FillMeshHoleType method = FILL_MESH_HOLE_FLAT,
-            const std::vector<Real>* vertexFields = NULL, std::vector<Real>* newMeshVertexFields = NULL);
+            const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
     };
 }

@@ -16,9 +16,11 @@ namespace GPP
         Vector3 mColor;
     };
 
-    struct GPP_EXPORT TriangleVertexIndex
+    struct GPP_EXPORT TriangleInfo
     {
+        TriangleInfo(Int vertexId0, Int vertexId1, Int vertexId2);
         Int mIndex[3];
+        Vector3 mNormal;
     };
 
     enum MeshType
@@ -41,6 +43,7 @@ namespace GPP
         virtual void SetVertexNormal(Int vid, const Vector3& normal);
         virtual void GetTriangleVertexIds(Int fid, Int vertexIds[3]) const;
         virtual void SetTriangleVertexIds(Int fid, Int vertexId0, Int vertexId1, Int vertexId2);
+        virtual Vector3 GetTriangleNormal(Int fid);
 
         // Return inserted triangle id
         virtual Int InsertTriangle(Int vertexId0, Int vertexId1, Int vertexId2);
@@ -75,6 +78,6 @@ namespace GPP
     private:
         MeshType mMeshType;
         std::vector<VertexInfo*> mVertexList;
-        std::vector<TriangleVertexIndex> mTriangleList;
+        std::vector<TriangleInfo*> mTriangleList;
     };
 }
