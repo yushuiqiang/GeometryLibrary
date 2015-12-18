@@ -13,6 +13,7 @@
 #include "RegistratePointCloud.h"
 #include "SamplePointCloud.h"
 
+#include "IPointList.h"
 #include "IPointCloud.h"
 #include "PointCloud.h"
 #include "ITriMesh.h"
@@ -22,7 +23,9 @@
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
 
+#include "DumpInfo.h"
 #include "GeneralMatrix.h"
+#include "GeometryField.h"
 #include "Matrix4x4.h"
 #include "SparseMatrix.h"
 #include "Plane3.h"
@@ -30,5 +33,4 @@
 #include "Vector3.h"
 #include "ToolAnn.h"
 #include "ToolLog.h"
-
-
+#include "ToolOctree.h"
