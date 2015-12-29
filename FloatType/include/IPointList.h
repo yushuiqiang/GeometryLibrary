@@ -13,7 +13,7 @@ namespace GPP
     {
     public:
         IPointList() {};
-        ~IPointList() {};
+        virtual ~IPointList() {};
 
         virtual Int GetPointCount() const = 0;
         virtual Vector3 GetPointCoord(Int pid) const = 0;
@@ -24,7 +24,7 @@ namespace GPP
     {
     public:
         explicit PointCloudPointList(const IPointCloud* pointCloud);
-        ~PointCloudPointList();
+        virtual ~PointCloudPointList();
 
         virtual Int GetPointCount() const;
         virtual Vector3 GetPointCoord(Int pid) const;
@@ -38,7 +38,7 @@ namespace GPP
     {
     public:
         explicit SampledPointList(const IPointCloud* pointCloud, const Int* sampleIndex, Int sampleCount);
-        ~SampledPointList();
+        virtual ~SampledPointList();
 
         virtual Int GetPointCount() const;
         virtual Vector3 GetPointCoord(Int pid) const;
@@ -54,7 +54,7 @@ namespace GPP
     {
     public:
         explicit TriMeshPointList(const ITriMesh* trMesh);
-        ~TriMeshPointList();
+        virtual ~TriMeshPointList();
 
         virtual Int GetPointCount() const;
         virtual Vector3 GetPointCoord(Int pid) const;

@@ -31,9 +31,12 @@ namespace GPP
         static ErrorCode ICPRegistrate(const IPointCloud* pointCloudRef, const IPointCloud* pointCloudFrom, Matrix4x4* resultTransform, const Matrix4x4* initTransform = NULL);
 
         // pointCloudRef = resultTransform * pointCloudFrom;
+        // if there are no marks, please set marksRef = NULL, marksFrom = NULL
         // resultTransform should allocate memory before function calling
         // overlapRatio: if user could estimate the overlap ratiod here, the api may process faster
-        static ErrorCode GlobalRegistrate(const IPointCloud* pointCloudRef, const IPointCloud* pointCloudFrom, Matrix4x4* resultTransform, RegistrateQuality quality = REGISTRATE_QUALITY_LOW, Real overlapRatio = 0.7);
+        static ErrorCode GlobalRegistrate(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
+            const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform, 
+            RegistrateQuality quality = REGISTRATE_QUALITY_LOW, Real overlapRatio = 0.66);
 
     };
 }

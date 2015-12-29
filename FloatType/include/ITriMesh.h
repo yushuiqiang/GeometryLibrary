@@ -33,6 +33,7 @@ namespace GPP
         virtual void PopbackTriangles(Int popCount) = 0;
 
         virtual void UpdateNormal(void) = 0;
+        // Clear all geometry information to initial state
         virtual void Clear(void) = 0;
 
         virtual ~ITriMesh(){};

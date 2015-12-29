@@ -3,6 +3,7 @@
 #include "ConsolidateMesh.h"
 #include "FillMeshHole.h"
 #include "FilterMesh.h"
+#include "MeasureMesh.h"
 #include "ParameterizeMesh.h"
 #include "SimplifyMesh.h"
 #include "SubdivideMesh.h"
