@@ -49,7 +49,7 @@ namespace GPP
 
         ErrorCode Compute(const GeneralMatrix& generalMatrix);
         
-        std::vector<Real> GetEigenVector(Int index) const;
+        void GetEigenVector(Int index, std::vector<Real>& eigenVector) const;
 
         //The eigenvalues are sorted in increasing order
         Real GetEigenValue(Int index) const;
