@@ -19,6 +19,8 @@ namespace GPP
         PoissonReconstructMesh();
         ~PoissonReconstructMesh();
 
+        // ponitCloud should have normals
+        // reconstructedMesh should be allocated memory first
         static ErrorCode Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh, ReconstructQuality quality = RECONSTRUCT_QUALITY_MEDIUM, const std::vector<Real>* pointFields = NULL, std::vector<Real>* vertexField = NULL);
     };
 }

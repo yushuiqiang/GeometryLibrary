@@ -20,14 +20,14 @@ namespace GPP
 
         // fileName should contains the path name and fileName, like ../Models/PointCloud.asc or C:/Models/PointCloud.asc
         // Support format: obj, stl, off, ply
-        static TriMesh*    ImportTriMesh(std::string fileName);
+        static TriMesh* ImportTriMesh(std::string fileName);
 
         // fileName should contains the path name and fileName, like ../Models/PointCloud.asc or C:/Models/PointCloud.asc
-        // Support format: obj, ply
-        static void ExportPointCloud(std::string fileName, const IPointCloud* pointCloud);
+        // Support format: obj, asc, ply
+        static ErrorCode ExportPointCloud(std::string fileName, const IPointCloud* pointCloud);
 
         // fileName should contains the path name and fileName, like ../Models/PointCloud.asc or C:/Models/PointCloud.asc
         // Support format: obj, stl, ply
-        static void ExportTriMesh(std::string fileName, const ITriMesh* triMesh);
+        static ErrorCode ExportTriMesh(std::string fileName, const ITriMesh* triMesh);
     };
 }
