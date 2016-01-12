@@ -43,5 +43,12 @@ namespace GPP
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform, 
             RegistrateQuality quality = REGISTRATE_QUALITY_LOW, Real overlapRatio = 0.66);
 
+        // pointCloudRef = resultTransform * pointCloudFrom;
+        // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first
+        // marksRef and marksFrom should have >= 3 points, no order requirement
+        // resultTransform should allocate memory before function calling
+        static ErrorCode GlobalRegistrateByMark(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
+            const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform);
+
     };
 }

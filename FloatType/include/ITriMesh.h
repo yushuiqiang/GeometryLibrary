@@ -27,6 +27,8 @@ namespace GPP
         // Return inserted vertex id
         virtual Int InsertVertex(const Vector3& coord) = 0;
         
+        // Be careful: if you swap vertex and popback them, then vertex index after the deleted vertices will be changed.
+        // If you want to delete some vertices, please use api DeleteTriMeshVertex in ToolMesh.h which is still developping.
         virtual void SwapVertex(Int vertexId0, Int vertexId1) = 0; 
         virtual void PopbackVertices(Int popCount) = 0;
         virtual void SwapTriangles(Int fid0, Int fid1) =0;

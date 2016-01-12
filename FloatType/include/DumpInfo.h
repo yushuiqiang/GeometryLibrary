@@ -33,6 +33,7 @@ namespace GPP
         POINT_REGISTRATION_ICP = 107,
         POINT_REGISTRATION_GLOBAL = 108,
         POINT_SAMPLING_UNIFORM = 109,
+        POINT_REGISTRATION_GLOBAL_MARK = 110,
     };
 
     class ITriMesh;
