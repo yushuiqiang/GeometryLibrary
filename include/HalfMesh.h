@@ -103,6 +103,7 @@ namespace GPP
 
         Vertex3D* GetVertex(Int vid);
         const Vertex3D* GetVertex(Int vid) const;
+        void SetVertex(Int vid, Vertex3D* vertex); // be carefull memory leak, we just simple set mVertexList.at(vid) = vertex
         Edge3D* GetEdge(Int eid);
         const Edge3D* GetEdge(Int eid) const;
         Face3D* GetFace(Int fid);
@@ -138,11 +139,12 @@ namespace GPP
         // If you don't change topology later, you can clear edge map to free memory
         void ClearEdgeMap(void);
         
-        // It is used in Simply Mesh
+        // They are used in Simply Mesh, it is better not to use it, if you indeed want to use it, please contact the author Li Guo
         // mEdgeList.at(edgeId) and its pair edge will be deleted, the related vertices, edges, faces will be updated
         // mVertexList, mEdgeList, mFaceList will not erase the deleted elements, just set them to NULL
         // If you want to erase the NULL elements, UpdateVertexIndex, UpdateEdgeIndex, UpdateFaceIndex can be used to do this
         ErrorCode ContractInnerEdge(Int edgeId, bool updateEdgeMap);
+        ErrorCode ContractBoundaryEdge(Int edgeId, bool updateEdgeMap);
 
         ~HalfMesh();
 
