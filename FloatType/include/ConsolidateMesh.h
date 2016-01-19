@@ -13,8 +13,13 @@ namespace GPP
 
         static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh);
 
-        static ErrorCode ExtractLargeTriMeshPart(ITriMesh* triMesh, int partCount);
+        // isolation should allocate memory first
+        // isolation value is between [0, 1], smaller value means more isolated
+        static ErrorCode CalculateIsolation(ITriMesh* triMesh, Real* isolation);
 
         static ErrorCode ConsolidateGeometry(ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
+
+        // positionWeight: (0, +). Larger value will smooth less.
+        static ErrorCode RemoveGeometryNoise(ITriMesh* triMesh, Real positionWeight = 1.0);
     };
 }

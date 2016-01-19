@@ -23,7 +23,7 @@ namespace GPP
         // pointsRef = resultTransform * initTransform * pointsFrom;
         // initTransform == NULL if initTransform is identity
         // resultTransform should allocate memory before function calling
-        static ErrorCode AlignByPointPairs(const std::vector<Vector3>& pointsRef, const std::vector<Vector3>& pointsFrom, Matrix4x4* resultTransform, const Matrix4x4* initTransform = NULL);
+        static ErrorCode AlignPointPair(const std::vector<Vector3>& pointsRef, const std::vector<Vector3>& pointsFrom, Matrix4x4* resultTransform, const Matrix4x4* initTransform = NULL);
 
         // pointCloudRef = resultTransform * initTransform * pointCloudFrom;
         // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first
@@ -39,7 +39,7 @@ namespace GPP
         // if there are no marks, please set marksRef = NULL, marksFrom = NULL
         // resultTransform should allocate memory before function calling
         // overlapRatio: if user could estimate the overlap ratiod here, the api may process faster
-        static ErrorCode GlobalRegistrate(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
+        static ErrorCode AlignPointCloud(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform, 
             RegistrateQuality quality = REGISTRATE_QUALITY_LOW, Real overlapRatio = 0.66);
 
@@ -47,7 +47,7 @@ namespace GPP
         // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first
         // marksRef and marksFrom should have >= 3 points, no order requirement
         // resultTransform should allocate memory before function calling
-        static ErrorCode GlobalRegistrateByMark(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
+        static ErrorCode AlignPointCloudByMark(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform);
 
     };

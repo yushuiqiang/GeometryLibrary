@@ -23,6 +23,7 @@ namespace GPP
         MESH_SUBDIVISION_REFINE = 12,
         MESH_SIMPLIFICATION_QUADRIC = 13,
         MESH_MEASURE_SECTION_EXACT = 14,
+        MESH_CONSOLIDATION_REMOVEGEOMETRYNOISE = 15,
 
         POINT_CONSOLIDATION_NORMALSMOOTHING = 101,
         POINT_CONSOLIDATION_NORMALCALCULATION = 102,
@@ -31,15 +32,19 @@ namespace GPP
         POINT_RECONSTRUCTION_POISSON = 105,
         POINT_REGISTRATION_ALIGNPOINTPAIR = 106,
         POINT_REGISTRATION_ICP = 107,
-        POINT_REGISTRATION_GLOBAL = 108,
+        POINT_REGISTRATION_ALIGNPOINTCLOUD = 108,
         POINT_SAMPLING_UNIFORM = 109,
-        POINT_REGISTRATION_GLOBAL_MARK = 110,
+        POINT_REGISTRATION_ALIGNPOINTCLOUD_MARK = 110,
+        POINT_MEASURE_DISTANCE_ONESIDE = 111,
+        POINT_CONSOLIDATION_UNIFORMITYCALCULATION = 112,
+        POINT_CONSOLIDATION_RAWSCANDATA = 113
     };
 
     class ITriMesh;
     class TriMesh;
     class IPointCloud;
     class PointCloud;
+    class IPointList;
     class GPP_EXPORT DumpBase
     {
     public:
@@ -57,6 +62,7 @@ namespace GPP
     protected:
         virtual void DumpTriMesh(const ITriMesh* triMesh, std::ofstream& dumpOut);
         virtual void DumpPointCloud(const IPointCloud* pointCloud, bool dumpNormal, std::ofstream& dumpOut);
+        virtual void DumpPointList(const IPointList* pointList, bool dumpNormal, std::ofstream& dumpOut);
     };
 
     typedef DumpBase* (*CreateDump)(void);

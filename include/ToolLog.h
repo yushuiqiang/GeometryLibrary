@@ -5,7 +5,7 @@
 
 namespace GPP
 {
-    enum LogLevel
+    enum GPP_EXPORT LogLevel
     {
         LOGLEVEL_DEBUG = 0,
         LOGLEVEL_INFO,
@@ -13,7 +13,7 @@ namespace GPP
         LOGLEVEL_OFF
     };
 
-    extern const LogLevel gSystemLogLevel;
+    extern GPP_EXPORT const LogLevel gSystemLogLevel;
 
 #define GPPLog(level) \
     if (level < GPP::gSystemLogLevel) ;\

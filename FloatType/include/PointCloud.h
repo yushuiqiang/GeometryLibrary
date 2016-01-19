@@ -48,7 +48,7 @@ namespace GPP
         virtual void Clear(void);
 
         void SetHasColor(bool has);
-        bool HasColor(void);
+        bool HasColor(void) const;
         Vector3 GetPointColor(Int pid) const;
         void SetPointColor(Int pid, const Vector3& color);
 

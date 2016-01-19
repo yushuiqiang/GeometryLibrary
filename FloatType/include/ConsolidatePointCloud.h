@@ -25,5 +25,16 @@ namespace GPP
         // pointCloud shoud have normals
         static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, Real* isolation);
 
+        // uniformaity should allocate memory first
+        // uniformaity value is between [0, 1], smaller value means more uniform
+        // pointCloud doesn't need to have normals
+        static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, Real* uniformaity);
+
+        // 1. remove original point (0, 0, 0)
+        // 2. remove outlier (optional)
+        // 3. calculate normal
+        // pointCloud is form left up corner to right down corner
+        static ErrorCode ConsolidateRawScanData(IPointCloud* pointCloud, Int resolutionX, Int resolutionY, bool removeOutlier);
+
     };
 }

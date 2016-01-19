@@ -18,5 +18,6 @@ namespace GPP
 
         // compressRatio: (0, 1], smaller value will compress more
         static ErrorCode CompressHeightField(std::vector<Real>* heightField, Int resolutionX, Int resolutionY, Real compressRatio);
+
     };
 }

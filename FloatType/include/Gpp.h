@@ -4,6 +4,7 @@
 #include "FillMeshHole.h"
 #include "FilterMesh.h"
 #include "MeasureMesh.h"
+#include "MeasurePointCloud.h"
 #include "ParameterizeMesh.h"
 #include "SimplifyMesh.h"
 #include "SubdivideMesh.h"

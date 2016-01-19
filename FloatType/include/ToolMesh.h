@@ -9,15 +9,24 @@ namespace GPP
     class HalfMesh;
 
     // Returned half mesh's normal is not calculated, you can call UpdateNormal if you need it
+    // returned halfmesh's normal is not updated here
     extern GPP_EXPORT HalfMesh* CreateHalfMeshFromITriMesh(const ITriMesh* triMesh);
 
-    //inputMesh should not be null
+    // inputMesh should not be null
+    // convertedMesh's normal is not updated here
     extern GPP_EXPORT ErrorCode ConvertTriMeshToITriMesh(const TriMesh* inputMesh, ITriMesh* convertedMesh);
     
-    //triMesh should not be null
-    //halfMesh should UpdateVertexIndex before calling
+    // triMesh should not be null
+    // halfMesh should UpdateVertexIndex before calling
+    // triMesh's normal is not updated here
     extern GPP_EXPORT ErrorCode ConvertHalfMeshToITriMesh(const HalfMesh* halfMesh, ITriMesh* triMesh);
 
-    //Deep Copy
+    // Deep Copy
+    // vertex coord, normal, color; triangle id, normal
     extern GPP_EXPORT TriMesh* CopyTriMesh(const TriMesh* triMesh);
+
+    // Related triangles will also be deleted
+    // triMesh's normal is not updated here
+    extern GPP_EXPORT ErrorCode DeleteTriMeshVertices(ITriMesh* triMesh, const std::vector<Int>& deleteIndex);
+
 }
