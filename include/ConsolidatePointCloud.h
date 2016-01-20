@@ -1,5 +1,6 @@
 #pragma once
 #include "IPointCloud.h"
+#include <vector>
 
 namespace GPP
 {
@@ -20,17 +21,15 @@ namespace GPP
         // Geometry will be modified to match normal
         static ErrorCode SmoothGeometryByNormal(IPointCloud* pointCloud);
 
-        // isolation should allocate memory first
         // isolation value is between [0, 1], smaller value means more isolated
         // pointCloud shoud have normals
-        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, Real* isolation);
+        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, std::vector<Real>* isolation);
 
-        // uniformaity should allocate memory first
         // uniformaity value is between [0, 1], smaller value means more uniform
         // pointCloud doesn't need to have normals
-        static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, Real* uniformaity);
+        static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, std::vector<Real>* uniformaity);
 
-        // 1. remove original point (0, 0, 0)
+        // 1. remove points whose z >= 0
         // 2. remove outlier (optional)
         // 3. calculate normal
         // pointCloud is form left up corner to right down corner

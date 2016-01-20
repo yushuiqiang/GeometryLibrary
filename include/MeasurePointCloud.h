@@ -11,6 +11,6 @@ namespace GPP
         ~MeasurePointCloud();
 
         static ErrorCode ComputeOneSideDistance(const IPointList* pointListRef, const IPointList* pointListFrom, 
-            Real& maxDistance, Int& maxPointId, Real* fromDistance = NULL);
+            Real& maxDistance, Int& maxPointId, std::vector<Real>* fromDistance = NULL);
     };
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "ITriMesh.h"
+#include <vector>
 
 namespace GPP
 {
@@ -13,9 +14,8 @@ namespace GPP
 
         static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh);
 
-        // isolation should allocate memory first
         // isolation value is between [0, 1], smaller value means more isolated
-        static ErrorCode CalculateIsolation(ITriMesh* triMesh, Real* isolation);
+        static ErrorCode CalculateIsolation(ITriMesh* triMesh, std::vector<Real>* isolation);
 
         static ErrorCode ConsolidateGeometry(ITriMesh* triMesh, Real minTriangleAngle, Real minEdgeLength, Real foldoverAngleTol);
 
