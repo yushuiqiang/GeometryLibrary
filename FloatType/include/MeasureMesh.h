@@ -21,5 +21,11 @@ namespace GPP
         // isSectionClose: whether vertexId0 is connected with vertexIdn
         // pathVertexPositions: shortest path between sectionVertexIds.
         static ErrorCode ComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathVertexPositions, Real& distance);
+
+        static ErrorCode ComputeArea(const ITriMesh* triMesh, Real& area);
+
+        // Note: User should be aware that this function can ONLY calculte watertight mesh which has no self-intersection. 
+        // Otherwise, the result will have deviation.
+        static ErrorCode ComputeVolume(const ITriMesh* triMesh, Real& volume);
     };
 }
