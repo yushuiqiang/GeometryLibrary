@@ -29,4 +29,12 @@ namespace GPP
     // triMesh's normal is not updated here
     extern GPP_EXPORT ErrorCode DeleteTriMeshVertices(ITriMesh* triMesh, const std::vector<Int>& deleteIndex);
 
+    // triMesh's normal is not updated here
+    // deleteIsolatedVertices: after deleting triangles, there may exist isolated vertices (degree is zero), if true, isolated vertices will be deleted
+    extern GPP_EXPORT ErrorCode DeleteTriMeshTriangles(ITriMesh* triMesh, const std::vector<Int>& deleteIndex, bool deleteIsolatedVertices);
+
+    // triMesh's normal is not updated here
+    // This api will delete vertices whose degree is zero
+    extern GPP_EXPORT ErrorCode DeleteIsolatedVertices(ITriMesh* triMesh);
+
 }

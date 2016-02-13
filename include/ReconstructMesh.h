@@ -13,11 +13,11 @@ namespace GPP
 
     class IPointCloud;
     class ITriMesh;
-    class GPP_EXPORT PoissonReconstructMesh
+    class GPP_EXPORT ReconstructMesh
     {
     public:
-        PoissonReconstructMesh();
-        ~PoissonReconstructMesh();
+        ReconstructMesh();
+        ~ReconstructMesh();
 
         // ponitCloud should have normals
         // reconstructedMesh should be allocated memory first

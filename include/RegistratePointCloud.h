@@ -2,7 +2,6 @@
 #include "IPointCloud.h"
 #include "IPointList.h"
 #include "Matrix4x4.h"
-#include "ToolOctree.h"
 #include <vector>
 
 namespace GPP
@@ -49,6 +48,14 @@ namespace GPP
         // resultTransform should allocate memory before function calling
         static ErrorCode AlignPointCloudByMark(const IPointCloud* pointCloudRef, const std::vector<Vector3>* marksRef, 
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform);
+        
+        // This command is not stable in Version1.0
+        // pointCloud should have normals, if not, please calculate them first
+        // isInSequence: are point clouds in a sequence? If in sequence, the calculate speed will be fast
+        // needLoopClosure: if there are loops in sequence, please set it true
+        // initTransform == NULL if initTransform is identity
+        static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, bool isInSequence, bool needLoopCloure,
+            std::vector<Matrix4x4>* resultTransformList, const std::vector<Matrix4x4>* initTransformList = NULL);
 
     };
 }

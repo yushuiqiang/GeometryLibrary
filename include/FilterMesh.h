@@ -17,6 +17,7 @@ namespace GPP
         static ErrorCode EnhanceDetail(ITriMesh* triMesh, Real intensity = 2.0);
 
         // compressRatio: (0, 1], smaller value will compress more
+        // This command is not available in Version1.0
         static ErrorCode CompressHeightField(std::vector<Real>* heightField, Int resolutionX, Int resolutionY, Real compressRatio);
 
     };
