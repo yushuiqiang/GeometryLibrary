@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <string>
 
 #ifdef GPP_DLL_EXPORT
 #ifdef WIN32
@@ -32,9 +33,14 @@
 #define GPP_API_IS_NOT_AVAILABLE -6
 #define GPP_DATA_IS_CORRUPT   -7
 
+//#define REALDOUBLE
 namespace GPP
 {
+#ifdef REALDOUBLE
+    typedef double Real;
+#else
     typedef float Real;
+#endif
     typedef int Int;
     typedef unsigned int UInt;
     typedef long long LongInt;
@@ -42,10 +48,10 @@ namespace GPP
     typedef int ErrorCode;
     extern GPP_EXPORT const Real REAL_TOL;
     extern GPP_EXPORT const Real REAL_LARGE;
+    extern GPP_EXPORT const Int INT_LARGE;    
+    extern GPP_EXPORT const UInt UINT_LARGE;    
     extern GPP_EXPORT const Real PI;
     extern GPP_EXPORT const Real ONE_RADIAN;
-
-    extern bool IsLibraryAvailable(void);
 
     // Reset progress value before calling api
     extern GPP_EXPORT void ResetApiProgress(void);
@@ -57,4 +63,14 @@ namespace GPP
     // Set progress value in api implmentation
     // range: [0, 1]
     extern void SetApiProgress(Real value);
+
+    // Active library steps:
+    // 1. Get registrationKey from your computer: std::string registrationKey = GetRegistrationKey();
+    // 2. Send registrationKey to threepark@163.com and get activationKey
+    // 3. SetActivationKey(activationKey)
+
+    // Every computer has one registration key
+    extern GPP_EXPORT std::string GetRegistrationKey(void);
+
+    extern GPP_EXPORT bool SetActivationKey(std::string key);
 }
