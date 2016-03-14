@@ -21,6 +21,7 @@ namespace GPP
         TriangleInfo(Int vertexId0, Int vertexId1, Int vertexId2);
         Int mIndex[3];
         Vector3 mNormal;
+        Vector3 mTexCoord[3];
     };
 
     enum MeshType
@@ -63,7 +64,7 @@ namespace GPP
 
         // This is used in STL mesh structure, since STL format has no topology information.
         // FuseVertex will make vertices as one vertex if their coorindates' distance is small enough
-        void FuseVertex(void);
+        ErrorCode FuseVertex(void);
 
         void SetMeshType(MeshType meshType);
         MeshType GetMeshType(void) const;
@@ -71,6 +72,8 @@ namespace GPP
         void SetVertexColor(Int vid, const Vector3& color);
         Vector3 GetVertexTexcoord(Int vid) const;
         void SetVertexTexcoord(Int vid, const Vector3& texcoord);
+        Vector3 GetTriangleTexcoord(Int fid, Int localVid) const;
+        void SetTriangleTexcoord(Int fid, Int localVid, const Vector3& texcoord);
         
         void UnifyCoords(Real bboxSize, Real* scaleValue = NULL, Vector3* objCenterCoord = NULL);
         void UnifyCoords(Real scaleValue, const Vector3& objCenterCoord);

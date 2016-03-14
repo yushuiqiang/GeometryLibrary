@@ -8,7 +8,6 @@ namespace GPP
     class TriMesh;
     class HalfMesh;
 
-    // Returned half mesh's normal is not calculated, you can call UpdateNormal if you need it
     // returned halfmesh's normal is not updated here
     extern GPP_EXPORT HalfMesh* CreateHalfMeshFromITriMesh(const ITriMesh* triMesh);
 
@@ -36,5 +35,9 @@ namespace GPP
     // triMesh's normal is not updated here
     // This api will delete vertices whose degree is zero
     extern GPP_EXPORT ErrorCode DeleteIsolatedVertices(ITriMesh* triMesh);
+
+    // splitted triMesh's normal is not updated here
+    // splitLines.at(lineid) is a line vertex list
+    extern GPP_EXPORT TriMesh* SplitTriMesh(const ITriMesh* triMesh, const std::vector<std::vector<Int> >& splitLines);
 
 }

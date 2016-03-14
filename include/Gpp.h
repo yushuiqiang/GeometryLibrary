@@ -5,9 +5,10 @@
 #include "FilterMesh.h"
 #include "MeasureMesh.h"
 #include "MeasurePointCloud.h"
-#include "ParameterizeMesh.h"
+#include "UnfoldMesh.h"
 #include "SimplifyMesh.h"
 #include "SubdivideMesh.h"
+#include "SegmentMesh.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"

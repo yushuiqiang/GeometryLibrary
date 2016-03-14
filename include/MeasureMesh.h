@@ -27,5 +27,8 @@ namespace GPP
         // Note: User should be aware that this function can ONLY calculte watertight mesh which has no self-intersection. 
         // Otherwise, the result will have deviation.
         static ErrorCode ComputeVolume(const ITriMesh* triMesh, Real& volume);
+
+        // curvature is related to triMesh's size, if triMesh' size *= s, then curvature /= s;
+        static ErrorCode ComputeMeanCurvature(const ITriMesh* triMesh, std::vector<Real>& curvature);
     };
 }

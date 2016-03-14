@@ -50,10 +50,9 @@ namespace GPP
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform);
 
         // pointCloud should have normals, if not, please calculate them first
-        // isInSequence: are point clouds in a sequence? If in sequence, the calculate speed will be fast
-        // needLoopClosure: if there are loops in sequence, please set it true
+        // needInitialAlignment: if point clouds are not aligned precisely, they need initial alignment
         // initTransform == NULL if initTransform is identity
-        static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, bool isInSequence, bool needLoopCloure,
+        static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, bool needInitialAlignment,
             std::vector<Matrix4x4>* resultTransformList, const std::vector<Matrix4x4>* initTransformList = NULL);
 
     };
