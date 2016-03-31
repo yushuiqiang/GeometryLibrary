@@ -1,5 +1,6 @@
 #pragma once
 #include "GppDefines.h"
+#include "Vector3.h"
 #include <vector>
 
 namespace GPP
@@ -39,5 +40,7 @@ namespace GPP
     // splitted triMesh's normal is not updated here
     // splitLines.at(lineid) is a line vertex list
     extern GPP_EXPORT TriMesh* SplitTriMesh(const ITriMesh* triMesh, const std::vector<std::vector<Int> >& splitLines);
+
+    extern ErrorCode ConsolidateDegenerateTriangles(const ITriMesh* triMesh, std::vector<Vector3>& vertexCoords);
 
 }

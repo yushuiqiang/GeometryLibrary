@@ -10,13 +10,15 @@ namespace GPP
         FilterMesh();
         ~FilterMesh();
 
-        // positionWeight: (0, +). Larger value will smooth less.
+        // positionWeight: (REAL_TOL, +). Larger value will smooth less
+        // Normal of result triMesh is not updated here
         static ErrorCode LaplaceSmooth(ITriMesh* triMesh, bool keepBoundary = true, Real positionWeight = 1.0);
 
-        // intensity: (1.0, +). Larger value will enhance more.
+        // intensity: (1.0, +). Larger value will enhance more
+        // Normal of result triMesh is not updated here
         static ErrorCode EnhanceDetail(ITriMesh* triMesh, Real intensity = 2.0);
 
-        // compressRatio: (0, 1], smaller value will compress more
+        // compressRatio: (REAL_TOL, 1], smaller value will compress more
         static ErrorCode CompressHeightField(std::vector<Real>* heightField, Int resolutionX, Int resolutionY, Real compressRatio);
 
     };

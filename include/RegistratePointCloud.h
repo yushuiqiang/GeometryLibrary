@@ -22,7 +22,8 @@ namespace GPP
         // pointsRef = resultTransform * initTransform * pointsFrom;
         // initTransform == NULL if initTransform is identity
         // resultTransform should allocate memory before function calling
-        static ErrorCode AlignPointPair(const std::vector<Vector3>& pointsRef, const std::vector<Vector3>& pointsFrom, Matrix4x4* resultTransform, const Matrix4x4* initTransform = NULL);
+        static ErrorCode AlignPointPair(const std::vector<Vector3>& pointsRef, const std::vector<Vector3>& pointsFrom, 
+            Matrix4x4* resultTransform, const Matrix4x4* initTransform = NULL);
 
         // pointCloudRef = resultTransform * initTransform * pointCloudFrom;
         // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first

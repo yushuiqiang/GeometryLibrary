@@ -14,7 +14,7 @@ namespace GPP
         static ErrorCode CalculatePointCloudNormal(IPointCloud* pointCloud, bool isDepthImage = false);
 
         // pointCloud should have normals
-        // normalWeight: (0, +). Larger value will smooth less.
+        // normalWeight: (REAL_TOL, +). Larger value will smooth less.
         static ErrorCode SmoothNormal(IPointCloud* pointCloud, Real normalWeight = 1.0);
 
         // pointCloud should have normals
@@ -29,7 +29,7 @@ namespace GPP
         // pointCloud doesn't need to have normals
         static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, std::vector<Real>* uniformaity);
 
-        // 1. remove points whose z >= 0
+        // 1. remove points whose z > -REAL_TOL
         // 2. remove outlier (optional)
         // 3. calculate normal
         // pointCloud is form left up corner to right down corner

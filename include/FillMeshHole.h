@@ -7,6 +7,7 @@ namespace GPP
     enum FillMeshHoleType
     {
         FILL_MESH_HOLE_FLAT = 0,
+        FILL_MESH_HOLE_TANGENT,
         FILL_MESH_HOLE_SMOOTH
     };
 

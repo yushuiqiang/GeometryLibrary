@@ -1,0 +1,72 @@
+#pragma once
+#include "ITriMesh.h"
+#include <vector>
+
+namespace GPP
+{
+    class TriMesh;
+    // there are some cases we need only use part of the input ITriMesh while we do NOT really need to create a new ITriMesh.
+    // Here given a class to represent such sub triMesh structure.
+    // Please NOTE: if you use the mutators of the SubTriMesh, the binded ITriMesh will also be modified.
+    class GPP_EXPORT SubTriMesh : public ITriMesh
+    {
+    public:
+        enum BuildSubTriMeshType
+        {
+            BUILD_SUBTRIMESH_TYPE_BY_TRIANGLES = 0, // only the triangles with the input ids will be in the SubTriMesh
+            BUILD_SUBTRIMESH_TYPE_BY_VERTICES = 1   // triangles with at least one of the input vertex ids will be in the SubTriMesh
+        };
+        // the subTriangleIds are against the input triMesh.
+        explicit SubTriMesh(ITriMesh* triMesh, const std::vector<Int>& entityIds, BuildSubTriMeshType type = BUILD_SUBTRIMESH_TYPE_BY_TRIANGLES);
+        ~SubTriMesh();
+
+        // accessors:
+        virtual Int GetVertexCount(void) const;
+        virtual Int GetTriangleCount(void) const;
+
+        virtual Vector3 GetVertexCoord(Int vid) const;
+        virtual Vector3 GetVertexNormal(Int vid) const;
+        virtual void GetTriangleVertexIds(Int fid, Int vertexIds[3]) const;
+        virtual Vector3 GetTriangleNormal(Int fid) const;
+
+        // mutators:
+        virtual void SetVertexCoord(Int vid, const Vector3& coord);
+        virtual void SetVertexNormal(Int vid, const Vector3& normal);
+        // make sure vertexIdx are in a consistent order in its connected triangles
+        virtual void SetTriangleVertexIds(Int fid, Int vertexId0, Int vertexId1, Int vertexId2);
+        virtual void SetTriangleNormal(Int fid, const Vector3& normal);
+        // Clear all geometry information to initial state, and the function will NOT clear the binded ITriMesh data.
+        virtual void Clear(void);
+
+        // And if you really need the SubTriMesh and seperate it from its binded ITriMesh, please use this function to get a brand new ITriMesh.
+        TriMesh* CreateTriMesh();
+
+        // these function will do the id transfer
+        Int VertexIdToSubTriMeshId(Int idAgainstITriMesh)const;
+        Int SubTriMeshIdToVertexId(Int idAgaintSubTriMesh)const;
+
+        // The following APIs are not implemented yet. And please do not use them.
+        // Return inserted triangle id (against the subTriMesh)
+        virtual Int InsertTriangle(Int vertexId0, Int vertexId1, Int vertexId2);
+        // Return inserted vertex id (against the subTriMesh)
+        virtual Int InsertVertex(const Vector3& coord);
+        // Be careful: if you swap vertex and popback them, then vertex index after the deleted vertices will be changed.
+        // If you want to delete some vertices, please use api DeleteTriMeshVertex in ToolMesh.h which is still developping.
+        virtual void SwapVertex(Int vertexId0, Int vertexId1); 
+        virtual void PopbackVertices(Int popCount);
+        virtual void SwapTriangles(Int fid0, Int fid1);
+        virtual void PopbackTriangles(Int popCount);
+        virtual void UpdateNormal(void);
+
+
+    private:
+        void BuildSubTriMeshByTriangles(const std::vector<Int>& subTriangleIds);
+        void BuildSubTriMeshByVertices(const std::vector<Int>& vertexIds);
+
+    private:
+        ITriMesh* mpTriMesh;
+        std::vector<Int> mSubTriangleIds;
+        std::vector<Int> mSubVertexIds;
+        std::vector<Int> mVertexIdToSubTriMeshMap;
+    };
+}

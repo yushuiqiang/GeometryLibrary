@@ -8,7 +8,6 @@
 #include "UnfoldMesh.h"
 #include "SimplifyMesh.h"
 #include "SubdivideMesh.h"
-#include "SegmentMesh.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"
@@ -20,9 +19,11 @@
 #include "IPointCloud.h"
 #include "PointCloud.h"
 #include "ITriMesh.h"
+#include "ITriangleList.h"
 #include "TriMesh.h"
 #include "HalfMesh.h"
 #include "Parser.h"
+#include "SubTriMesh.h"
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
 

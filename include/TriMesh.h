@@ -85,4 +85,17 @@ namespace GPP
         std::vector<VertexInfo*> mVertexList;
         std::vector<TriangleInfo*> mTriangleList;
     };
+
+    struct EdgeInfo
+    {
+        EdgeInfo();
+        EdgeInfo(Int vertexId0, Int vertexId1);
+        void SetVertexIds(Int vertexId0, Int vertexId1);
+
+        Int mVertexId[2];
+        std::vector<Int> mFaceIds;
+    };
+
+    extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList);
+
 }
