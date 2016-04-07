@@ -1,6 +1,13 @@
+/*==================================================================================================
+
+                       Copyright (c) 2016 GeometryPlusPlus, ThreePark
+                             Unpublished - All rights reserved
+
+====================================================================================================*/
 #pragma once
 #include "ITriMesh.h"
 #include <vector>
+#include <map>
 
 namespace GPP
 {
@@ -86,6 +93,8 @@ namespace GPP
         std::vector<TriangleInfo*> mTriangleList;
     };
 
+    // mVertexId[0] < mVertexId[1]
+    // In manifold sturcture: 1. Edge on boundary: mFaceIds.size() == 1; 2. Other: mFaceIds.size() == 2
     struct EdgeInfo
     {
         EdgeInfo();
@@ -96,6 +105,17 @@ namespace GPP
         std::vector<Int> mFaceIds;
     };
 
-    extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList);
+    extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
+        std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL);
 
+    // store the point on edge informations:
+    // if the point is exactly on the mesh vertex, the vertex id is stored in mVertexIdStart, and mVertexIdEnd is -1.
+    // if the point is on a mesh edge, the two Ints store the two vertex ids for the edge, and the weight indicate the proportion
+    // of the point: Point = startVertexPos * mWeight + endVertexPos * (1 - mWeight)
+    struct PointOnEdge
+    {
+        Int  mVertexIdStart;
+        Int  mVertexIdEnd;
+        Real mWeight;
+    };
 }

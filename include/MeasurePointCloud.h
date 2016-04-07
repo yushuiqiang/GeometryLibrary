@@ -1,3 +1,9 @@
+/*==================================================================================================
+
+                       Copyright (c) 2016 GeometryPlusPlus, ThreePark
+                             Unpublished - All rights reserved
+
+====================================================================================================*/
 #pragma once
 #include "IPointList.h"
 #include <vector>

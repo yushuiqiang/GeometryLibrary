@@ -1,3 +1,9 @@
+/*==================================================================================================
+
+                       Copyright (c) 2016 GeometryPlusPlus, ThreePark
+                             Unpublished - All rights reserved
+
+====================================================================================================*/
 #pragma once
 
 #include "ConsolidateMesh.h"
@@ -19,11 +25,9 @@
 #include "IPointCloud.h"
 #include "PointCloud.h"
 #include "ITriMesh.h"
-#include "ITriangleList.h"
 #include "TriMesh.h"
 #include "HalfMesh.h"
 #include "Parser.h"
-#include "SubTriMesh.h"
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
 

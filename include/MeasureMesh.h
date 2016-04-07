@@ -1,5 +1,11 @@
+/*==================================================================================================
+
+                       Copyright (c) 2016 GeometryPlusPlus, ThreePark
+                             Unpublished - All rights reserved
+
+====================================================================================================*/
 #pragma once
-#include "ITriMesh.h"
+#include "TriMesh.h"
 #include "ITriangleList.h"
 #include <vector>
 
@@ -10,17 +16,6 @@ namespace GPP
     public:
         MeasureMesh();
         ~MeasureMesh();
-
-        // store the exact path point informations:
-        // if the path point is exactly on the mesh vertex, the vertex id is stored in mEdgeVertexIdStart, and mEdgeVertexIdEnd is -1.
-        // if the path point is on a mesh edge, the two Ints store the two vertex ids for the edge, and the weight indicate the proportion
-        // of the path point: pathPoint = startVertexPos * mWeight + endVertexPos * (1 - mWeight)
-        struct ExactPathPointInfo
-        {
-            Int  mEdgeVertexIdStart;
-            Int  mEdgeVertexIdEnd;
-            Real mWeight;
-        };
 
         // note: path will through pass mesh vertex, thus it is an approximate geodesics in mesh
         // sectionVertexIds: line segments vertex ids, like vertexId0, vertexId1, vertexId2 ... ... vertexIdn
@@ -34,13 +29,13 @@ namespace GPP
         // isSectionClose: whether vertexId0 is connected with vertexIdn
         // pathPointPositions: shortest path between sectionVertexIds
         // pathPointInfos: store the information of each path points
-        static ErrorCode ComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<ExactPathPointInfo> *pathPointInfos);
-        static ErrorCode ComputeExactGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<ExactPathPointInfo> *pathPointInfos);
+        static ErrorCode ComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos);
+        static ErrorCode ComputeExactGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos);
 
         // This API is a quick version for computing a cross-edge geodesics. But this API will get a slight not-so-exact geodesic path.
         // expandSize: [5, +). accuracy of the geodesic result, bigger expandSize, better exactness.
         static ErrorCode FastComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, 
-            std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<ExactPathPointInfo> *pathPointInfos, Int expandSize = 10);
+            std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos, Int expandSize = 10);
 
         static ErrorCode ComputeArea(const ITriMesh* triMesh, Real& area);
 
