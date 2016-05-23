@@ -23,9 +23,6 @@ namespace GPP
         SubdivideMesh();
         ~SubdivideMesh();
 
-        // Catmull-Clark subdivision
-        static ErrorCode CCSubdivideMesh(ITriMesh* triMesh);
-
         // vertexFields: it could be color, texture coordinate....
         // Normal of result triMesh is not updated here
         static ErrorCode LoopSubdivideMesh(ITriMesh* triMesh, const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);

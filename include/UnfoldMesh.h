@@ -30,8 +30,8 @@ namespace GPP
             const std::vector<Int>* fixedVertexIndex = NULL);
 
         // initChartCount: triMesh will be segmented into initChartCount part
-        static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, std::vector<Real>* texCoords, 
-            std::vector<Int>* faceTexIds);
+        static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, bool needInitSplit, bool needSplitFoldOver,
+            std::vector<Real>* texCoords, std::vector<Int>* faceTexIds);
 
         // splitted triMesh's normal is not updated here
         // splitLines.at(lineid) is a line vertex list

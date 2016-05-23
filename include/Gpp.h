@@ -14,12 +14,17 @@
 #include "UnfoldMesh.h"
 #include "SimplifyMesh.h"
 #include "SubdivideMesh.h"
+#include "TextureImage.h"
+#include "DigitalRelief.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"
+#include "SumPointCloud.h"
 #include "ReconstructMesh.h"
 #include "RegistratePointCloud.h"
 #include "SamplePointCloud.h"
+#include "IntrinsicColor.h"
+#include "DeformPointList.h"
 
 #include "IPointList.h"
 #include "IPointCloud.h"

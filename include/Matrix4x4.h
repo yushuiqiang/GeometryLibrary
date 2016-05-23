@@ -56,6 +56,9 @@ namespace GPP
         // Rotate Shape L from source to target, angle of shape L is 90 degree
         void GenerateLShapeRotation(const Vector3& sourceCenter, const Vector3& sourceTop, const Vector3& sourceRight,
                                     const Vector3& targetCenter, const Vector3& targetTop, const Vector3& targetRight);
+        Matrix4x4 AffineInverse(void);
+
+        void Print(void);
 
     private:
         Real* mpValues;

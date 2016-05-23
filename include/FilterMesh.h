@@ -24,8 +24,5 @@ namespace GPP
         // Normal of result triMesh is not updated here
         static ErrorCode EnhanceDetail(ITriMesh* triMesh, Real intensity = 2.0);
 
-        // compressRatio: (REAL_TOL, 1], smaller value will compress more
-        static ErrorCode CompressHeightField(std::vector<Real>* heightField, Int resolutionX, Int resolutionY, Real compressRatio);
-
     };
 }

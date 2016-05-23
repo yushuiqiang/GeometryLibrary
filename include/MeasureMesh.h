@@ -22,7 +22,8 @@ namespace GPP
         // isSectionClose: whether vertexId0 is connected with vertexIdn
         // pathVertexIds: shortest path between sectionVertexIds
         static ErrorCode ComputeApproximateGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance);
-        static ErrorCode ComputeApproximateGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance);
+        // Internal use api
+        static ErrorCode _ComputeApproximateGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance);
         
         // note: path will pass through mesh edge, thus it is an accurate geodesics in mesh
         // sectionVertexIds: line segments vertex ids, like vertexId0, vertexId1, vertexId2 ... ... vertexIdn
@@ -30,12 +31,15 @@ namespace GPP
         // pathPointPositions: shortest path between sectionVertexIds
         // pathPointInfos: store the information of each path points
         static ErrorCode ComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos);
-        static ErrorCode ComputeExactGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos);
+        // Internal use api
+        static ErrorCode _ComputeExactGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos);
 
         // This API is a quick version for computing a cross-edge geodesics. But this API will get a slight not-so-exact geodesic path.
-        // expandSize: [5, +). accuracy of the geodesic result, bigger expandSize, better exactness.
+        // accuracy: [0, 1]. accuracy of the geodesic result. it is a balance with the accuracy and computation time. 
+        // accuracy = 1.0 for exact geodesics but very slow, accuracy = 0 for by-vertex geodesics but not very exact.
+        // we suggest to use default value 0.5, it is quick and has about 0.05% deviation with the exact geodesic.
         static ErrorCode FastComputeExactGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, 
-            std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos, Int expandSize = 10);
+            std::vector<Vector3>& pathPointPositions, Real& distance, std::vector<PointOnEdge> *pathPointInfos, Real accuracy = 0.5);
 
         static ErrorCode ComputeArea(const ITriMesh* triMesh, Real& area);
 

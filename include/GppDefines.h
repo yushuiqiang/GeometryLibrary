@@ -66,10 +66,6 @@ namespace GPP
     // progress value range: [0, 1]
     extern GPP_EXPORT Real GetApiProgress(void);
 
-    // Set progress value in api implmentation
-    // range: [0, 1]
-    extern void SetApiProgress(Real value);
-
     // Active library steps:
     // 1. Get registrationKey from your computer: std::string registrationKey = GetRegistrationKey();
     // 2. Send registrationKey to threepark@163.com and get activationKey

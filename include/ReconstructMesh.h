@@ -4,13 +4,6 @@
 
 namespace GPP
 {
-    enum ReconstructQuality
-    {
-        RECONSTRUCT_QUALITY_LOW = 0,
-        RECONSTRUCT_QUALITY_MEDIUM,
-        RECONSTRUCT_QUALITY_HIGH
-    };
-
     class IPointCloud;
     class ITriMesh;
     class GPP_EXPORT ReconstructMesh
@@ -21,8 +14,9 @@ namespace GPP
 
         // ponitCloud should have normals
         // reconstructedMesh should be allocated memory first
+        // quality range [0, 6], larger value will more accurate mesh, but speed will be slower.
         static ErrorCode Reconstruct(const IPointCloud* pointCloud, ITriMesh* recontructedMesh, 
-            ReconstructQuality quality = RECONSTRUCT_QUALITY_MEDIUM, bool needFillHole = false, 
-            const std::vector<Real>* pointFields = NULL, std::vector<Real>* vertexField = NULL);
+            Int quality = 5, bool needFillHole = false, const std::vector<Real>* pointFields = NULL, 
+            std::vector<Real>* vertexField = NULL);
     };
 }

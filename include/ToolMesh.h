@@ -35,6 +35,10 @@ namespace GPP
     // vertex coord, normal; triangle id, normal
     extern GPP_EXPORT ErrorCode CopyTriMesh(const ITriMesh* triMesh, ITriMesh* copyMesh);
 
+    // Deep Copy
+    // vertex texture coordinates.
+    extern GPP_EXPORT ErrorCode CopyTriMeshTextureCoordinates(const TriMesh* srcTriMesh, TriMesh* targetTriMesh);
+
     // Related triangles will also be deleted
     // triMesh's normal is not updated here
     extern GPP_EXPORT ErrorCode DeleteTriMeshVertices(ITriMesh* triMesh, const std::vector<Int>& deleteIndex);
