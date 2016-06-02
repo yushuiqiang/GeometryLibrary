@@ -29,6 +29,12 @@ namespace GPP
 
         // pointCloud should allocate memory first and be blank
         ErrorCode ExtractPointCloud(IPointCloud* pointCloud, std::vector<Real>* pointFields = NULL);
+
+        // pointFields != NULL
+        // baseCloudId: the first point cloud for sum
+        // pointFields >= fieldsMin && pointFields <= fieldsMax
+        ErrorCode ExtractPointCloudWithFusion(IPointCloud* pointCloud, std::vector<Real>* pointFields, Int baseCloudId = 0, 
+            Int neighborCount = 6, const std::vector<Real>* fieldsMin = NULL, const std::vector<Real>* fieldsMax = NULL);
         
         void Clear(void);
 

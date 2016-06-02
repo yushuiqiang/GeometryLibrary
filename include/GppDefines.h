@@ -38,6 +38,7 @@
 #define GPP_NOT_INITIALIZED   -5
 #define GPP_API_IS_NOT_AVAILABLE -6
 #define GPP_DATA_IS_CORRUPT   -7
+#define GPP_API_IS_NOT_DEFINE -8
 
 #define REALDOUBLE
 namespace GPP
@@ -70,9 +71,6 @@ namespace GPP
     // 1. Get registrationKey from your computer: std::string registrationKey = GetRegistrationKey();
     // 2. Send registrationKey to threepark@163.com and get activationKey
     // 3. SetActivationKey(activationKey)
-
-    // Every computer has one registration key
-    extern GPP_EXPORT std::string GetRegistrationKey(void);
 
     extern GPP_EXPORT bool SetActivationKey(std::string key);
 }

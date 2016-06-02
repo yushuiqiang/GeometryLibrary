@@ -38,7 +38,7 @@ namespace GPP
         // 2. targetVertexCount == NULL and targetDensity != NULL
         // other kind of input parameters are not acceptable.
         // vertexFields: it could be color, texture coordinate....
-        static ErrorCode RefineMesh(ITriMesh* triMesh, const Int *targetVertexCount, const Real *targetDensity = NULL, const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
-        static ErrorCode RefineMesh(ITriMesh* triMesh, Int targetVertexCount, const std::vector<std::pair<Int, Int> >& forbidFlipVertexPairs);
+        static ErrorCode _RefineMesh(ITriMesh* triMesh, const Int *targetVertexCount, const Real *targetDensity = NULL, const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
+        static ErrorCode _RefineMesh(ITriMesh* triMesh, Int targetVertexCount, const std::vector<std::pair<Int, Int> >& forbidFlipVertexPairs);
     };
 }

@@ -17,8 +17,7 @@ namespace GPP
         ~IntrinsicColor();
 
         // Point cloud should have normal
-        static ErrorCode DecomposePointCloudColor(const std::vector<IPointCloud*>& pointCloudList, 
-            const std::vector<Real>& colorList, std::vector<Real>& albedoList, std::vector<Real>& shadingList);
-
+        static ErrorCode DecomposePointCloudColor(const std::vector<IPointCloud*>& pointCloudList, const std::vector<Real>& colorList, 
+            std::vector<Real>& albedoList, std::vector<Real>& shadingList);
     };
 }

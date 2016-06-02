@@ -50,7 +50,7 @@ namespace GPP
         enum BuildSubTriangleListType
         {
             BUILD_SUBTRIANGLE_LIST_TYPE_BY_TRIANGLES = 0, // only the triangles with the input ids will be in the SubTriMesh
-            BUILD_SUBTRIANGLE_LIST_TYPE_BY_VERTICES = 1   // triangles with at least one of the input vertex ids will be in the SubTriMesh
+            BUILD_SUBTRIANGLE_LIST_TYPE_BY_VERTICES = 1   // triangle vertex ids are all in will be in the SubTriMesh
         };
 
         explicit SubTriangleList(const ITriMesh* triMesh, const std::vector<Int>& subEntityIds, 

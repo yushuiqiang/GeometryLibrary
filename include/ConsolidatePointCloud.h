@@ -17,26 +17,30 @@ namespace GPP
         ~ConsolidatePointCloud();
 
         // If pointCloud is depth image, result normal will face z positive direction, speed is faster
-        static ErrorCode CalculatePointCloudNormal(IPointCloud* pointCloud, bool isDepthImage = false);
+        // point count >= 4
+        // neighborCount >= 4
+        static ErrorCode CalculatePointCloudNormal(IPointCloud* pointCloud, bool isDepthImage = false, Int neighborCount = 9);
 
 
-        static ErrorCode ReversePatchNormal(IPointCloud* pointCloud, Int pointId);
+        static ErrorCode ReversePatchNormal(IPointCloud* pointCloud, Int pointId, Int neighborCount = 9);
 
         // pointCloud should have normals
         // normalWeight: (REAL_TOL, +). Larger value will smooth less.
-        static ErrorCode SmoothNormal(IPointCloud* pointCloud, Real normalWeight = 1.0);
+        static ErrorCode SmoothNormal(IPointCloud* pointCloud, Real normalWeight = 1.0, Int neighborCount = 9);
 
         // pointCloud should have normals
         // Geometry will be modified to match normal
-        static ErrorCode SmoothGeometryByNormal(IPointCloud* pointCloud);
+        static ErrorCode SmoothGeometryByNormal(IPointCloud* pointCloud, Int neighborCount = 9);
 
         // isolation value is between [0, 1], smaller value means more isolated
         // pointCloud shoud have normals
-        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, std::vector<Real>* isolation);
+        // neighborCount is default 20
+        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, std::vector<Real>* isolation, Int neighborCount = 20);
 
         // uniformaity value is between [0, 1], smaller value means more uniform
+        // neighborCount is default 9
         // pointCloud doesn't need to have normals
-        static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, std::vector<Real>* uniformaity);
+        static ErrorCode CalculateUniformity(const IPointCloud* pointCloud, std::vector<Real>* uniformaity, Int neighborCount = 9);
 
         // 1. remove points whose z > -REAL_TOL if zPositive == false
         //    remove points whose z <  REAL_TOL if zPositive == true

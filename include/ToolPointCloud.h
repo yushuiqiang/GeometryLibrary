@@ -17,5 +17,5 @@ namespace GPP
 
     extern GPP_EXPORT ErrorCode CalculatePointListBoundingBox(const IPointList* pointlist, Vector3& bboxMin, Vector3& bboxMax);
 
-    extern GPP_EXPORT ErrorCode CalculatePointListDensity(const IPointList* pointList, Real& density);
+    extern GPP_EXPORT ErrorCode CalculatePointListDensity(const IPointList* pointList, Int neighborCount, Real& density);
 }

@@ -20,10 +20,11 @@ namespace GPP
         enum BuildSubTriMeshType
         {
             BUILD_SUBTRIMESH_TYPE_BY_TRIANGLES = 0, // only the triangles with the input ids will be in the SubTriMesh
-            BUILD_SUBTRIMESH_TYPE_BY_VERTICES = 1   // triangles with at least one of the input vertex ids will be in the SubTriMesh
+            BUILD_SUBTRIMESH_TYPE_BY_VERTICES = 1   // triangle vertex ids are all in will be in the SubTriMesh
         };
         // the subTriangleIds are against the input triMesh.
         explicit SubTriMesh(ITriMesh* triMesh, const std::vector<Int>& entityIds, BuildSubTriMeshType type = BUILD_SUBTRIMESH_TYPE_BY_TRIANGLES);
+        explicit SubTriMesh(ITriMesh* triMesh, const std::vector<bool>& entityFlags, BuildSubTriMeshType type = BUILD_SUBTRIMESH_TYPE_BY_TRIANGLES);
         ~SubTriMesh();
 
         // accessors:
@@ -44,13 +45,6 @@ namespace GPP
         // Clear all geometry information to initial state, and the function will NOT clear the binded ITriMesh data.
         virtual void Clear(void);
 
-        // And if you really need the SubTriMesh and seperate it from its binded ITriMesh, please use this function to get a brand new ITriMesh.
-        TriMesh* CreateTriMesh();
-
-        // these function will do the id transfer
-        Int VertexIdToSubTriMeshId(Int idAgainstITriMesh)const;
-        Int SubTriMeshIdToVertexId(Int idAgaintSubTriMesh)const;
-
         // The following APIs are not implemented yet. And please do not use them.
         // Return inserted triangle id (against the subTriMesh)
         virtual Int InsertTriangle(Int vertexId0, Int vertexId1, Int vertexId2);
@@ -66,8 +60,12 @@ namespace GPP
 
 
     private:
+        // subTriangleIds have no repeated indices
         void BuildSubTriMeshByTriangles(const std::vector<Int>& subTriangleIds);
+        // vertexIds have no repeated indices
         void BuildSubTriMeshByVertices(const std::vector<Int>& vertexIds);
+        void BuildSubTriMeshByTriangles(const std::vector<bool>& subTriangleFlags);
+        void BuildSubTriMeshByVertices(const std::vector<bool>& vertexFlags);
 
     private:
         ITriMesh* mpTriMesh;

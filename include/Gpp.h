@@ -35,6 +35,7 @@
 #include "Parser.h"
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
+#include "SubTriMesh.h"
 
 #include "DumpInfo.h"
 #include "Matrix4x4.h"
