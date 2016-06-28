@@ -25,6 +25,7 @@
 #include "SamplePointCloud.h"
 #include "IntrinsicColor.h"
 #include "DeformPointList.h"
+#include "FitPointCloud.h"
 
 #include "IPointList.h"
 #include "IPointCloud.h"

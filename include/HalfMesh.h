@@ -89,11 +89,14 @@ namespace GPP
         void    SetNormal(const Vector3& normal);
         Int     GetId() const;
         void    SetId(Int id);
+        Int     GetUniqueId() const;
+        void    SetUniqueId(Int id);
 
         ~Face3D();
 
     private:
         Int     mId;    // mId is the index of mFaceList in HalfMesh
+        Int     mUniqueId;
         Edge3D* mpEdge;
         Vector3 mNormal;
     };
@@ -166,5 +169,6 @@ namespace GPP
         std::vector<Face3D* >   mFaceList;
         std::vector<std::map<Int, Edge3D*> > mEdgeMap;
         Int mEdgeMapNewVertexId;
+        Int mNewFaceId;
     };
 }

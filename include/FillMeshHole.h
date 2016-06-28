@@ -30,5 +30,14 @@ namespace GPP
         // NOTE: If the boundarySeedIds are empty or NULL, all the holes will be filled.
         static ErrorCode FillHoles(ITriMesh* triMesh, const std::vector<Int>* boundarySeedIds = NULL, FillMeshHoleType method = FILL_MESH_HOLE_FLAT,
             const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
+
+        // The method will generate a bridge region between the input two edges. And it will generate some new vertices along the bridge region.
+        // Now, the input edge pairs should be from the same boundary loop.
+        // Parameters: 
+        //             edge1VertexIds[2], edge2VertexIds[2](in): the vertices ids for the two edges.
+        //             vertexFields(in):          could be color or something else.
+        //             insertedVertexFields(out): only output the fields of the new generated vertex.
+        static ErrorCode BridgeEdges(ITriMesh* triMesh, const Int edge1VertexIds[2], const Int edge2VertexIds[2],
+            const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
     };
 }

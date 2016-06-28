@@ -44,6 +44,7 @@ namespace GPP
     {
     public:
         explicit SampledPointList(const IPointCloud* pointCloud, const Int* sampleIndex, Int sampleCount);
+        explicit SampledPointList(const IPointList* pointList, const Int* sampleIndex, Int sampleCount);
         virtual ~SampledPointList();
 
         virtual Int GetPointCount() const;
@@ -52,6 +53,7 @@ namespace GPP
 
     private:
         const IPointCloud* mpPointCloud;
+        const IPointList* mpPointList;
         const Int* mpSampleIndex;
         Int mSampleCount;
     };

@@ -35,7 +35,9 @@ namespace GPP
         // isolation value is between [0, 1], smaller value means more isolated
         // pointCloud shoud have normals
         // neighborCount is default 20
-        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, std::vector<Real>* isolation, Int neighborCount = 20);
+        // cloudIds: in SumPointCloud::ExtractPointCloud, every point belongs to one point cloud, and cloudIds are their ids
+        static ErrorCode CalculateIsolation(const IPointCloud* pointCloud, std::vector<Real>* isolation, 
+            Int neighborCount = 20, const std::vector<Int>* cloudIds = NULL);
 
         // uniformaity value is between [0, 1], smaller value means more uniform
         // neighborCount is default 9

@@ -16,6 +16,11 @@ namespace GPP
     class HalfMesh;
 
     // returned halfmesh's normal is not updated here
+    ////////////////////////////////////////////////////////////////////////////////////// 
+    // note, face vertex id order: 
+    // triMesh->GetTriangleVertexIds(fid, vertexIds);
+    // halfMesh->GetFace(fid)->GetEdge()->GetVertex() == triMesh->GetVertex(vertexIds[0]);
+    ////////////////////////////////////////////////////////////////////////////////////// 
     extern GPP_EXPORT HalfMesh* CreateHalfMeshFromITriMesh(const ITriMesh* triMesh);
 
     // inputMesh should not be null
@@ -25,6 +30,11 @@ namespace GPP
     // triMesh should not be null
     // halfMesh should UpdateVertexIndex before calling
     // triMesh's normal is not updated here
+    ////////////////////////////////////////////////////////////////////////////////////// 
+    // note, face vertex id order: 
+    // triMesh->GetTriangleVertexIds(fid, vertexIds);
+    // halfMesh->GetFace(fid)->GetEdge()->GetVertex() == triMesh->GetVertex(vertexIds[0]);
+    ////////////////////////////////////////////////////////////////////////////////////// 
     extern GPP_EXPORT ErrorCode ConvertHalfMeshToITriMesh(const HalfMesh* halfMesh, ITriMesh* triMesh);
 
     // Deep Copy

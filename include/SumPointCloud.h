@@ -18,23 +18,23 @@ namespace GPP
     {
     public:
         SumPointCloud();
-        explicit SumPointCloud(Int resolutionX, Int resolutionY, Int resolutionZ, 
-            const Vector3& bboxMin, const Vector3& bboxMax, bool hasNormalInfo);
+        explicit SumPointCloud(Real interval, const Vector3& bboxMin, const Vector3& bboxMax, bool hasNormalInfo);
         ~SumPointCloud();
 
-        void Init(Int resolutionX, Int resolutionY, Int resolutionZ, const Vector3& bboxMin, const Vector3& bboxMax, bool hasNormalInfo);
+        void Init(Real interval, const Vector3& bboxMin, const Vector3& bboxMax, bool hasNormalInfo);
 
         // initTransform == NULL if initTransform is identity
         ErrorCode UpdateSumFunction(const IPointCloud* pointCloud, const Matrix4x4* transform, const std::vector<Real>* pointFields = NULL);
 
         // pointCloud should allocate memory first and be blank
-        ErrorCode ExtractPointCloud(IPointCloud* pointCloud, std::vector<Real>* pointFields = NULL);
+        ErrorCode ExtractPointCloud(IPointCloud* pointCloud, std::vector<Real>* pointFields = NULL, std::vector<Int>* cloudIds = NULL);
 
         // pointFields != NULL
         // baseCloudId: the first point cloud for sum
         // pointFields >= fieldsMin && pointFields <= fieldsMax
         ErrorCode ExtractPointCloudWithFusion(IPointCloud* pointCloud, std::vector<Real>* pointFields, Int baseCloudId = 0, 
-            Int neighborCount = 6, const std::vector<Real>* fieldsMin = NULL, const std::vector<Real>* fieldsMax = NULL);
+            Int neighborCount = 12, const std::vector<Real>* fieldsMin = NULL, const std::vector<Real>* fieldsMax = NULL,
+            std::vector<Int>* cloudIds = NULL);
         
         void Clear(void);
 
@@ -45,9 +45,7 @@ namespace GPP
 
     private:
         SumTree* mpSumTree;
-        Int mResolutionX;
-        Int mResolutionY;
-        Int mResolutionZ;
+        Real mInterval;
         Vector3 mBBoxMin;
         Vector3 mBBoxMax;
         bool mHasNormalInfo;

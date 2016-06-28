@@ -38,7 +38,9 @@ namespace GPP
         // pointCloudRef = resultTransform * pointCloudFrom;
         // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first
         // resultTransform should allocate memory before function calling
-        static ErrorCode AlignPointCloud(const IPointCloud* pointCloudRef, const IPointCloud* pointCloudFrom, Matrix4x4* resultTransform);
+        // maxSampleTripleCount: larger value will get a more stale result, but performance will be lower
+        static ErrorCode AlignPointCloud(const IPointCloud* pointCloudRef, const IPointCloud* pointCloudFrom, Matrix4x4* resultTransform, 
+            Int maxSampleTripleCount = 500);
 
         // pointCloudRef = resultTransform * pointCloudFrom;
         // pointCloudRef and pointCloudFrom should have normals, if not, please calculate them first
@@ -48,11 +50,10 @@ namespace GPP
             const IPointCloud* pointCloudFrom, const std::vector<Vector3>* marksFrom, Matrix4x4* resultTransform);
 
         // pointCloud should have normals, if not, please calculate them first
-        // needInitialAlignment: if point clouds are not aligned precisely, they need initial alignment
         // maxIterationCount > 0: 15 is fine usually.
         // initTransform == NULL if initTransform is identity
         // hasNormalInfo: if pointCloudList has normal information, registrate result will be more accurate and fast
-        static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, bool needInitialAlignment, Int maxIterationCount,
+        static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, Int maxIterationCount,
             std::vector<Matrix4x4>* resultTransformList, const std::vector<Matrix4x4>* initTransformList = NULL, bool hasNormalInfo = true,
             Int fixId = 0);
 

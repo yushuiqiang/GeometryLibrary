@@ -69,6 +69,9 @@ namespace GPP
         virtual void UpdateNormal(void);     
         virtual void Clear(void);
 
+        void SetHasColor(bool has);
+        bool HasColor(void) const;
+
         // This is used in STL mesh structure, since STL format has no topology information.
         // FuseVertex will make vertices as one vertex if their coorindates' distance is small enough
         ErrorCode FuseVertex(void);
@@ -91,6 +94,7 @@ namespace GPP
         MeshType mMeshType;
         std::vector<VertexInfo*> mVertexList;
         std::vector<TriangleInfo*> mTriangleList;
+        bool mHasColor;
     };
 
     // mVertexId[0] < mVertexId[1]
