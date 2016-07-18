@@ -33,14 +33,5 @@ namespace GPP
         static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, bool needInitSplit, bool needSplitFoldOver,
             std::vector<Real>* texCoords, std::vector<Int>* faceTexIds);
 
-        // splitted triMesh's normal is not updated here
-        // splitLines.at(lineid) is a line vertex list
-        static ErrorCode SplitTriMesh(ITriMesh* triMesh, const std::vector<std::vector<Int> >& splitLines);
-
-        // splitLine should be a simple line: no intersection
-        // The first and last points of snipLines should be on vertex
-        // triMesh'r normal is not updated
-        static ErrorCode InsertSplitLineOnTriMesh(ITriMesh* triMesh, const std::vector<PointOnEdge>& splitLine, 
-            std::vector<Int>* newSplitLineIds = NULL);
     };
 }
