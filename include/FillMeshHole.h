@@ -14,7 +14,8 @@ namespace GPP
     {
         FILL_MESH_HOLE_FLAT = 0,
         FILL_MESH_HOLE_TANGENT,
-        FILL_MESH_HOLE_SMOOTH
+        FILL_MESH_HOLE_CURVATURE,
+        FILL_MESH_HOLE_TRIANGULATION
     };
 
     class GPP_EXPORT FillMeshHole
@@ -22,6 +23,7 @@ namespace GPP
     public:
         // Given an input triMesh, it will find out all the hole loops. 
         // Each found hole loop is an array of the hole's boundary vertices IDs. And holesIds outputs all the loops. 
+        // holdsIds are all oriented.
         static ErrorCode FindHoles(const ITriMesh* triMesh, std::vector<std::vector<Int> > *holesIds);
         
         // Given an input triMesh, the function will fill the holes and also fill the corresponding vertex fields if required.
@@ -39,5 +41,6 @@ namespace GPP
         //             insertedVertexFields(out): only output the fields of the new generated vertex.
         static ErrorCode BridgeEdges(ITriMesh* triMesh, const Int edge1VertexIds[2], const Int edge2VertexIds[2],
             const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
+
     };
 }

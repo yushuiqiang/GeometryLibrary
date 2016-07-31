@@ -109,8 +109,9 @@ namespace GPP
         std::vector<Int> mFaceIds;
     };
 
+    // oneWayMap: if true, every edge will be in vertexEdgeMap only once like vertexEdgeMap[smallVertexId][largeVertexId]
     extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
-        std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL);
+        std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL, bool oneWayMap = true);
 
     // store the point on edge informations:
     // if the point is exactly on the mesh vertex, the vertex id is stored in mVertexIdStart, and mVertexIdEnd is -1.

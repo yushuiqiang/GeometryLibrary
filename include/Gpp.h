@@ -13,12 +13,15 @@
 #include "MeasurePointCloud.h"
 #include "UnfoldMesh.h"
 #include "SimplifyMesh.h"
+#include "SplitMesh.h"
 #include "SubdivideMesh.h"
 #include "TextureImage.h"
 #include "DigitalRelief.h"
+#include "OffsetMesh.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"
+#include "SignedDistanceFunction.h"
 #include "SumPointCloud.h"
 #include "ReconstructMesh.h"
 #include "RegistratePointCloud.h"
@@ -40,5 +43,6 @@
 
 #include "DumpInfo.h"
 #include "Matrix4x4.h"
+#include "Plane3.h"
 #include "Vector2.h"
 #include "Vector3.h"

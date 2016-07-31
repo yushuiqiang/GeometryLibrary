@@ -54,8 +54,8 @@ namespace GPP
         // initTransform == NULL if initTransform is identity
         // hasNormalInfo: if pointCloudList has normal information, registrate result will be more accurate and fast
         static ErrorCode GlobalRegistrate(const std::vector<IPointCloud*>* pointCloudList, Int maxIterationCount,
-            std::vector<Matrix4x4>* resultTransformList, const std::vector<Matrix4x4>* initTransformList = NULL, bool hasNormalInfo = true,
-            Int fixId = 0);
+            std::vector<Matrix4x4>* resultTransformList, const std::vector<Matrix4x4>* initTransformList = NULL, 
+            bool hasNormalInfo = true, Int fixId = 0, const std::vector<std::vector<Vector3> >* markList = NULL);
 
     };
 }
