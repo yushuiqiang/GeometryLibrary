@@ -34,7 +34,8 @@ namespace GPP
             const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
 
         // The method will generate a bridge region between the input two edges. And it will generate some new vertices along the bridge region.
-        // Now, the input edge pairs should be from the same boundary loop.
+        // Now, the input edge pairs can be from the same boundary loop or from different boundary loops.
+        // The link rules of each of the pair of vertices are determined by the orientation of the edges.
         // Parameters: 
         //             edge1VertexIds[2], edge2VertexIds[2](in): the vertices ids for the two edges.
         //             vertexFields(in):          could be color or something else.

@@ -49,7 +49,9 @@ namespace GPP
         // 2. remove outlier (optional)
         // 3. calculate normal
         // pointCloud is form left up corner to right down corner
-        static ErrorCode ConsolidateRawScanData(IPointCloud* pointCloud, Int resolutionX, Int resolutionY, bool removeOutlier, bool zPositive);
+        // maxZAngle: (0, 90 * ONE_RADIAN). Remove points whose normal z(positive) is less than cos(maxZAngle)
+        static ErrorCode ConsolidateRawScanData(IPointCloud* pointCloud, Int resolutionX, Int resolutionY, 
+            bool removeOutlier, bool zPositive, Real maxZAngle = 90.0 * ONE_RADIAN);
 
     };
 }
