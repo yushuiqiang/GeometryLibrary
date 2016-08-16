@@ -33,6 +33,7 @@ namespace GPP
         // pointCloud should allocate memory first and be blank
         ErrorCode ExtractPointCloud(IPointCloud* pointCloud, std::vector<Real>* pointFields = NULL, std::vector<Int>* cloudIds = NULL);
 
+        // Please use IntrinsicColor::TuneColorFromMultiFrame, and we will not support this api anymore
         // pointFields != NULL
         // baseCloudId: the first point cloud for sum
         // pointFields >= fieldsMin && pointFields <= fieldsMax

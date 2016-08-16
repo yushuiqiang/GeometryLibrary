@@ -13,7 +13,8 @@
 
 namespace GPP
 {
-    struct SdfTree;
+    struct FuseTree;
+
     class GPP_EXPORT FusePointCloud
     {
     public:
@@ -42,7 +43,7 @@ namespace GPP
         
 
     private:
-        SdfTree* mpSdfTree;
+        FuseTree* mpFuseTree;
         Int mResolutionX;
         Int mResolutionY;
         Int mResolutionZ;

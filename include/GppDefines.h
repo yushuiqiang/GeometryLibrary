@@ -57,7 +57,7 @@ namespace GPP
     extern GPP_EXPORT const Real REAL_LARGE;
     extern GPP_EXPORT const Int INT_LARGE;    
     extern GPP_EXPORT const UInt UINT_LARGE;    
-    extern GPP_EXPORT const Real PI;
+    extern GPP_EXPORT const Real GPP_PI;
     extern GPP_EXPORT const Real ONE_RADIAN;
 
     // Reset progress value before calling api

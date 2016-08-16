@@ -19,8 +19,6 @@ namespace GPP
         VertexInfo(const Vector3& coord, const Vector3& normal);
         Vector3 mCoord;
         Vector3 mNormal;
-        Vector3 mTexCoord;
-        Vector3 mColor;
     };
 
     struct GPP_EXPORT TriangleInfo
@@ -28,7 +26,6 @@ namespace GPP
         TriangleInfo(Int vertexId0, Int vertexId1, Int vertexId2);
         Int mIndex[3];
         Vector3 mNormal;
-        Vector3 mTexCoord[3];
     };
 
     enum MeshType
@@ -40,7 +37,10 @@ namespace GPP
     class GPP_EXPORT TriMesh : public ITriMesh
     {
     public:
+        // In the default constructor, TriMesh has no color, vertex textre coordinate, triangle texture coordinate information
+        // User can set the information in the constructor or use SetHas** api to allocate the memory
         TriMesh();
+        TriMesh(bool hasColor, bool hasVertexTexCoord, bool hasTriangleTexCoord);
 
         virtual Int GetVertexCount(void) const;
         virtual Int GetTriangleCount(void) const;
@@ -69,8 +69,13 @@ namespace GPP
         virtual void UpdateNormal(void);     
         virtual void Clear(void);
 
+        // Set** api will allocate memory for the correspondant information
         void SetHasColor(bool has);
         bool HasColor(void) const;
+        void SetHasVertexTexCoord(bool has);
+        bool HasVertexTexCoord(void) const;
+        void SetHasTriangleTexCoord(bool has);
+        bool HasTriangleTexCoord(void) const;
 
         // This is used in STL mesh structure, since STL format has no topology information.
         // FuseVertex will make vertices as one vertex if their coorindates' distance is small enough
@@ -78,6 +83,7 @@ namespace GPP
 
         void SetMeshType(MeshType meshType);
         MeshType GetMeshType(void) const;
+
         Vector3 GetVertexColor(Int vid) const;
         void SetVertexColor(Int vid, const Vector3& color);
         Vector3 GetVertexTexcoord(Int vid) const;
@@ -94,7 +100,12 @@ namespace GPP
         MeshType mMeshType;
         std::vector<VertexInfo*> mVertexList;
         std::vector<TriangleInfo*> mTriangleList;
+        std::vector<Vector3> mVertexColorList;
+        std::vector<Vector3> mVertexTexCoordList;
+        std::vector<Vector3> mTriangleTexCoordList;
         bool mHasColor;
+        bool mHasVertexTexCoord;
+        bool mHasTriangleTexCoord;
     };
 
     // mVertexId[0] < mVertexId[1]
@@ -109,8 +120,9 @@ namespace GPP
         std::vector<Int> mFaceIds;
     };
 
+    // oneWayMap: if true, every edge will be in vertexEdgeMap only once like vertexEdgeMap[smallVertexId][largeVertexId]
     extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
-        std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL);
+        std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL, bool oneWayMap = true);
 
     // store the point on edge informations:
     // if the point is exactly on the mesh vertex, the vertex id is stored in mVertexIdStart, and mVertexIdEnd is -1.

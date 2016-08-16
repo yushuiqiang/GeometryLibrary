@@ -14,6 +14,7 @@ namespace GPP
 {
     extern GPP_EXPORT PointCloud* CopyPointCloud(const PointCloud* pointCloud);
 
+    // deleteIndex could have duplicate index
     extern GPP_EXPORT ErrorCode DeletePointCloudElements(IPointCloud* pointCloud, const std::vector<Int>& deleteIndex);
 
     extern GPP_EXPORT ErrorCode CalculatePointListBoundingBox(const IPointList* pointlist, Vector3& bboxMin, Vector3& bboxMax);
@@ -25,4 +26,10 @@ namespace GPP
 
     // pointCloud should have normal, and this function just update normal and the orientation is the same as before
     extern GPP_EXPORT ErrorCode UpdatePointCloudNormal(IPointCloud* pointCloud, Int neighborCount);
+
+    // pointCloud should have normal
+    // pointCloud should be depth data
+    // maxZAngle: (0, 90 * ONE_RADIAN). Remove points whose normal z(positive) in cameral coordinate is less than cos(maxZAngle)
+    extern GPP_EXPORT ErrorCode RemoveBoundaryPoint(IPointCloud* pointCloud, Real maxZAngle);
+
 }
