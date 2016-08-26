@@ -30,12 +30,12 @@ namespace GPP
         // cloudIds: the original point cloud id of point
         // pointColors: range[0, 1]
         static ErrorCode TuneColorFromMultiFrame(const IPointCloud* pointCloud, Int neighborCount, 
-            const std::vector<Int>& cloudIds, std::vector<Vector3>& pointColors);
+            const std::vector<Int>& colorIds, std::vector<Vector3>& pointColors);
 
         // Point cloud should have been aligned before calling this api
         // color value should be in range [0, 1]
         static ErrorCode TuneColorFromSingleLight(const std::vector<IPointCloud*>& pointCloudList, 
-            std::vector<std::vector<Vector3> >& colorList);
+            std::vector<std::vector<Vector3> >& colorList, bool needBlend, std::vector<std::vector<Int> >* colorIdList);
 
         
         static ErrorCode TuneTextureImageByVertexColor(const std::vector<Real>& textureCoords, const std::vector<Vector3>& vertexColors, 

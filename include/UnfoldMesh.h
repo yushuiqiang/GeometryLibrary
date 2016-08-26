@@ -16,9 +16,6 @@ namespace GPP
         UnfoldMesh();
         ~UnfoldMesh();
 
-        // This api is not stable at present, please don't use it
-        static ErrorCode AnglePreserving(const ITriMesh* triMesh, std::vector<Real>* texCoords);
-
         // triMesh: 1. disk like topology; 2. Single connected region
         // fixedVertexIndices should have at least 2 vertices for each connected region, usually set to vertices on boundary
         static ErrorCode ConformalMap(const ITriMesh* triMesh, const std::vector<Int>* fixedVertexIndices,
@@ -29,9 +26,12 @@ namespace GPP
         static ErrorCode OptimizeIsometric(const ITriMesh* triMesh, std::vector<Real>* texCoords, Int iterationCount, 
             const std::vector<Int>* fixedVertexIndex = NULL);
 
+        // singleRegionList: mesh should be single connected region
+        static ErrorCode PackUVAtlas(const std::vector<ITriMesh*>& singleRegionList, std::vector<std::vector<Real> >& texCoordList);
+
         // initChartCount: triMesh will be segmented into initChartCount part
-        static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, bool needInitSplit, bool needSplitFoldOver,
-            std::vector<Real>* texCoords, std::vector<Int>* faceTexIds);
+        static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, std::vector<Real>* texCoords, 
+            std::vector<Int>* faceTexIds, bool needInitSplit, bool needSplitFoldOver, bool needSplitOverlap);
 
     };
 }

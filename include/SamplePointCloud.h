@@ -23,10 +23,6 @@ namespace GPP
         SamplePointCloud();
         ~SamplePointCloud();
 
-        // Internal use api
-        static ErrorCode _UniformSamplePointList(const IPointList* pointList, Int sampleCount, Int* sampleIndex, 
-            Int seedId = 0, SampleQuality quality = SAMPLE_QUALITY_HIGH);
-
         // sampleIndex should be allocated memory before calling this api
         static ErrorCode UniformSample(const IPointCloud* pointCloud, Int sampleCount, Int* sampleIndex, 
             Int seedId = 0, SampleQuality quality = SAMPLE_QUALITY_HIGH);
@@ -35,6 +31,13 @@ namespace GPP
         // uniformWeight: [0, 1]. Larger value will get a more uniform result
         static ErrorCode GeometrySample(const IPointCloud* pointCloud, Int sampleCount, Int* sampleIndex, 
             Real uniformWeight = 0.1, Int neighborCount = 9, Int seedId = 0, SampleQuality quality = SAMPLE_QUALITY_HIGH);
+
+        static ErrorCode Simplify(const IPointCloud* pointCloud, Int resolution, IPointCloud* simplifiedCloud, 
+            const std::vector<Real>* pointFields = NULL, std::vector<Real>* simplifiedFields = NULL);
+
+        // Internal use api
+        static ErrorCode _UniformSamplePointList(const IPointList* pointList, Int sampleCount, Int* sampleIndex, 
+            Int seedId = 0, SampleQuality quality = SAMPLE_QUALITY_HIGH);
 
         // Internal use api
         // pointList should have normal information

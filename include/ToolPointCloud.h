@@ -30,6 +30,14 @@ namespace GPP
     // pointCloud should have normal
     // pointCloud should be depth data
     // maxZAngle: (0, 90 * ONE_RADIAN). Remove points whose normal z(positive) in cameral coordinate is less than cos(maxZAngle)
-    extern GPP_EXPORT ErrorCode RemoveBoundaryPoint(IPointCloud* pointCloud, Real maxZAngle);
+    // if cameraDir == NULL, it will use average point cloud normal as cameraDir. 
+    // If point cloud is in depth cordinate system, cameraDir may be (0, 0, 1) or (0, 0, -1)
+    extern GPP_EXPORT ErrorCode DetectBoundaryPointByZAngle(IPointCloud* pointCloud, Real maxZAngle, const Vector3* cameraDir, 
+        std::vector<Int>& boundaryIds);
+
+
+    // pointCloud should be depth data and have no transform in the world
+    // boundarySize >= 1.0, larger value will make boundary size larger
+    extern GPP_EXPORT ErrorCode DetectBoundaryPointByZProjection(IPointCloud* pointCloud, Real boundarySize, std::vector<Int>& boundaryIds);
 
 }
