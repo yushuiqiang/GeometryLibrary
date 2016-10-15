@@ -45,20 +45,21 @@ namespace GPP
         // Clear all geometry information to initial state, and the function will NOT clear the binded ITriMesh data.
         virtual void Clear(void);
 
-        // The following APIs are not implemented yet. And please do not use them.
+        virtual void UpdateNormal(void);
+
         // Return inserted triangle id (against the subTriMesh)
         virtual Int InsertTriangle(Int vertexId0, Int vertexId1, Int vertexId2);
         // Return inserted vertex id (against the subTriMesh)
         virtual Int InsertVertex(const Vector3& coord);
+
+        // The following APIs are not implemented yet. And please do not use them.
         // Be careful: if you swap vertex and popback them, then vertex index after the deleted vertices will be changed.
         // If you want to delete some vertices, please use api DeleteTriMeshVertex in ToolMesh.h which is still developping.
         virtual void SwapVertex(Int vertexId0, Int vertexId1); 
         virtual void PopbackVertices(Int popCount);
         virtual void SwapTriangles(Int fid0, Int fid1);
         virtual void PopbackTriangles(Int popCount);
-        virtual void UpdateNormal(void);
-
-
+        
     private:
         // subTriangleIds have no repeated indices
         void BuildSubTriMeshByTriangles(const std::vector<Int>& subTriangleIds);

@@ -18,6 +18,9 @@
 #include "TextureImage.h"
 #include "DigitalRelief.h"
 #include "OffsetMesh.h"
+#include "Remesh.h"
+#include "SampleMesh.h"
+#include "Triangulation.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"
@@ -40,6 +43,7 @@
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
 #include "SubTriMesh.h"
+#include "ToolQueryMesh.h"
 
 #include "DumpInfo.h"
 #include "Matrix4x4.h"

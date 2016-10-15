@@ -131,14 +131,15 @@ namespace GPP
         // 1. Compute Face Normal
         // 2. If onlyFaceNormal == false, compute vertex normal
         void UpdateNormal(bool onlyFaceNormal = false);
-        
+
         // 1. Remove edges which have no face 
         // 2. SetBoundaryVertexEdge
         // 3. Remove dummy vertex
         void ValidateTopology();
         
         // Set boundary vertex's out edge (GetEdge) to be boundary half edge
-        void SetBoundaryVertexEdge();
+        // if edge == NULL, all edges will be set.
+        void SetBoundaryVertexEdge(Edge3D* edge = NULL);
         
         // Erase NULL element from element list, and update element ids
         void UpdateVertexIndex();

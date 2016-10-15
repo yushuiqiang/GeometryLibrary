@@ -21,6 +21,7 @@ namespace GPP
         Real DistanceSquared(const Vector2& vec2) const;
         Real Normalise();
         void Rotate(Real angle);
+        Real CrossProduct(const Vector2& vec2) const;
 
         Real     operator [] (int index) const;
         Real&    operator [] (int index);
@@ -39,6 +40,6 @@ namespace GPP
         ~Vector2();
 
     private:
-        Real mX, mY, mZ;
+        Real mX, mY;
     };
 }

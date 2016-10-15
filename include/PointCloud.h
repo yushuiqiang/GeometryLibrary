@@ -4,32 +4,11 @@
 
 namespace GPP
 {
-    class GPP_EXPORT Point3D
-    {
-    public:
-        Point3D();
-        Point3D(const Vector3& coord);
-        Point3D(const Vector3& coord, const Vector3& normal);
-
-        void SetCoord(const Vector3& coord);
-        Vector3 GetCoord() const;
-        void SetNormal(const Vector3& normal);
-        Vector3 GetNormal() const;
-        void SetColor(const Vector3& color);
-        Vector3 GetColor() const;
-
-        ~Point3D();
-
-    private:
-        Vector3 mCoord;
-        Vector3 mNormal;
-        Vector3 mColor;
-    };
-
     class GPP_EXPORT PointCloud : public IPointCloud
     {
     public:
         PointCloud();
+        PointCloud(bool hasNormal, bool hasColor);
 
         virtual Int GetPointCount() const;
         virtual Vector3 GetPointCoord(Int pid) const;
@@ -56,11 +35,16 @@ namespace GPP
         void UnifyCoords(Real bboxSize, Real* scaleValue = NULL, Vector3* objCenterCoord = NULL);
         void UnifyCoords(Real scaleValue, const Vector3& objCenterCoord);
 
+        void SetDefaultColor(const Vector3& color);
+
         virtual ~PointCloud();
 
     private:
-        std::vector<Point3D* > mPointList;
         bool mHasNormal;
         bool mHasColor;
+        std::vector<Vector3> mCoordList;
+        std::vector<Vector3> mNormalList;
+        std::vector<Vector3> mColorList;
+        Vector3 mDefaultColor;
     };
 }

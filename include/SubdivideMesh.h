@@ -32,13 +32,9 @@ namespace GPP
         // Normal of result triMesh is not updated here
         static ErrorCode DensifyMesh(ITriMesh* triMesh, Int targetVertexCount, const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
 
-        // currently, the two APIs are not stable. Please do not use them now.
-        // There are two types of the input parameter:
-        // 1. targetVertexCount != NULL and targetDensity == NULL
-        // 2. targetVertexCount == NULL and targetDensity != NULL
-        // other kind of input parameters are not acceptable.
-        // vertexFields: it could be color, texture coordinate....
-        static ErrorCode _RefineMesh(ITriMesh* triMesh, const Int *targetVertexCount, const Real *targetDensity = NULL, const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
+        // internal use only.
+        // note: this API will refine the mesh to the targetVertexCount.
+        // For some special requirement, there may be some input vertex pair which can not be flipped during the refine process. So pass in such parameters.
         static ErrorCode _RefineMesh(ITriMesh* triMesh, Int targetVertexCount, const std::vector<std::pair<Int, Int> >& forbidFlipVertexPairs);
     };
 }

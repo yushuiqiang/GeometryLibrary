@@ -94,6 +94,8 @@ namespace GPP
         void UnifyCoords(Real bboxSize, Real* scaleValue = NULL, Vector3* objCenterCoord = NULL);
         void UnifyCoords(Real scaleValue, const Vector3& objCenterCoord);
 
+        void SetDefaultColor(Vector3 color);
+
         virtual ~TriMesh();
 
     private:
@@ -106,6 +108,7 @@ namespace GPP
         bool mHasColor;
         bool mHasVertexTexCoord;
         bool mHasTriangleTexCoord;
+        Vector3 mDefaultColor;
     };
 
     // mVertexId[0] < mVertexId[1]
@@ -128,10 +131,38 @@ namespace GPP
     // if the point is exactly on the mesh vertex, the vertex id is stored in mVertexIdStart, and mVertexIdEnd is -1.
     // if the point is on a mesh edge, the two Ints store the two vertex ids for the edge, and the weight indicate the proportion
     // of the point: Point = startVertexPos * mWeight + endVertexPos * (1 - mWeight)
-    struct PointOnEdge
+    struct GPP_EXPORT PointOnEdge
     {
+        PointOnEdge();
+        PointOnEdge(Int vertexIdStart, Int vertexIdEnd, Real weight);
+
         Int  mVertexIdStart;
         Int  mVertexIdEnd;
         Real mWeight;
+    };
+
+    // mCoord: barycentric coordinate
+    struct GPP_EXPORT PointOnFace
+    {
+        PointOnFace();
+        PointOnFace(Int faceId, const Vector3& coord);
+
+        Int mFaceId;
+        Vector3 mCoord;
+    };
+
+    struct GPP_EXPORT Obb
+    {
+    public:
+        Vector3 mCenter;     // the center position of the bounding box
+        Vector3 mAxis[3];    // the orietation directions. Here, assume the three axes are perpendicular to each other
+        Real mExtents[3];    // the 3 1/2-scales on the oritation direction
+
+    public:
+        Obb();
+        Obb(const Vector3& center, const Vector3 axis[3], const Real extents[3]);
+
+        void Get8CornerPoints(std::vector<Vector3>& cornerPoints) const;
+        bool IsPointInside(const Vector3& point) const;
     };
 }

@@ -27,6 +27,9 @@ namespace GPP
         static ErrorCode InsertSplitLineOnTriMesh(ITriMesh* triMesh, const std::vector<PointOnEdge>& splitLine, 
             std::vector<Int>* newSplitLineIds = NULL);
 
+        // initChartCount: triMesh will be segmented into initChartCount part before splitting
+        static ErrorCode GenerateAtlasSplitLines(const ITriMesh* triMesh, Int initChartCount, std::vector<std::vector<Int> >& splitLines);
+
         // triMesh: new triangles will be added near the cutting plane, since plane will cut triangle into sub-triangles
         // triangleFlags: 1 - above plane, 0 - under plane
         static ErrorCode SplitByPlane(ITriMesh* triMesh, const Plane3* plane, std::vector<bool>* triangleFlags);

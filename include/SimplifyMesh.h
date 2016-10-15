@@ -26,5 +26,13 @@ namespace GPP
         static ErrorCode SimplifyWithTextureCoords(ITriMesh* triMesh, Int targetVertexCount, 
             const std::vector<Vector3>* texCoords, std::vector<Vector3>* simplifiedTexCoords, 
             const std::vector<Real>* vertexFields = NULL, std::vector<Real>* simplifiedVertexFields = NULL);
+
+        // removingVertices: need removing vertex index
+        // vertexMap: simplified vertex index map to origin vertex index
+        // targetVertexCount: controling simplified vertex count. Usually *targetVertexCount == removingVertices.size()
+        // sharpAngle: if edge faces' angle is larger than sharpAngle, the edge will be sharp edge and its vertex position will be fixed. 
+        // sharpAngle range (0, 180 * ONE_RADIAN)
+        static ErrorCode SimplifyByRemovingVertex(ITriMesh* triMesh, const std::vector<Int>& removingVertices, 
+            std::vector<Int>* vertexMap, const Int* targetVertexCount, const Real* sharpAngle);
     };
 }

@@ -5,7 +5,6 @@
 
 ====================================================================================================*/
 #pragma once
-#include "GppDefines.h"
 #include "Vector3.h"
 #include <vector>
 
@@ -62,5 +61,7 @@ namespace GPP
     extern GPP_EXPORT ErrorCode DeleteIsolatedVertices(ITriMesh* triMesh);
 
     extern ErrorCode ConsolidateDegenerateTriangles(const ITriMesh* triMesh, std::vector<Vector3>& vertexCoords);
+
+    extern ErrorCode ComputeTriangleNormal(const ITriMesh* triMesh, std::vector<Vector3>& normalList);
 
 }

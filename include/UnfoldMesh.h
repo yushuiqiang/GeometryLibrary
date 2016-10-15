@@ -29,7 +29,7 @@ namespace GPP
         // singleRegionList: mesh should be single connected region
         static ErrorCode PackUVAtlas(const std::vector<ITriMesh*>& singleRegionList, std::vector<std::vector<Real> >& texCoordList);
 
-        // initChartCount: triMesh will be segmented into initChartCount part
+        // initChartCount: triMesh will be segmented into initChartCount part before unfolding
         static ErrorCode GenerateUVAtlas(const ITriMesh* triMesh, Int initChartCount, std::vector<Real>* texCoords, 
             std::vector<Int>* faceTexIds, bool needInitSplit, bool needSplitFoldOver, bool needSplitOverlap);
 
