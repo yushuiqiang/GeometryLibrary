@@ -34,7 +34,7 @@ namespace GPP
         static ErrorCode RemoveGeometryNoise(ITriMesh* triMesh, Real sharpAngle = 70.0 * ONE_RADIAN, Real positionWeight = 1.0);
 
         // Internal use api
-        static bool _IsTriMeshManifold(const ITriMesh* triMesh);
+        static bool _IsTriMeshManifold(const ITriMesh* triMesh, Int* invalidVertexId = NULL);
 
         // Internal use api
         static bool _IsGeometryDegenerate(const ITriMesh* triMesh);

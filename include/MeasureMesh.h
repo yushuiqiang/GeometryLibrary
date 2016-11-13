@@ -11,6 +11,48 @@
 
 namespace GPP
 {
+    class GPP_EXPORT IMeshDistance
+    {
+    public:
+        IMeshDistance(){};
+
+        virtual Real GetEdgeLength(Int vertexId0, Int vertexId1) const = 0;
+        
+        virtual ~IMeshDistance(){};
+    };
+
+    class GPP_EXPORT EuclidDistance : public IMeshDistance
+    {
+    public:
+        EuclidDistance(const ITriangleList* triMesh);
+
+        virtual Real GetEdgeLength(Int vertexId0, Int vertexId1) const;
+
+        virtual ~EuclidDistance();
+
+    private:
+        const ITriangleList* mTriMesh;
+    };
+
+    class GPP_EXPORT PrincipalCurvatureDistance : public IMeshDistance
+    {
+    public:
+        PrincipalCurvatureDistance(const ITriangleList* triMesh, const std::vector<Vector3>* minDirs, const std::vector<Vector3>* maxDirs,
+            const std::vector<Real>* minCurvature, const std::vector<Real>* maxCurvature, Real weight);
+
+        virtual Real GetEdgeLength(Int vertexId0, Int vertexId1) const;
+
+        virtual ~PrincipalCurvatureDistance();
+
+    private:
+        const ITriangleList* mTriMesh;
+        const std::vector<Vector3>* mMinDirs;
+        const std::vector<Vector3>* mMaxDirs;
+        const std::vector<Real>* mMinCurvature;
+        const std::vector<Real>* mMaxCurvature;
+        Real mWeight;
+    };
+
     class GPP_EXPORT MeasureMesh
     {
     public:
@@ -21,9 +63,11 @@ namespace GPP
         // sectionVertexIds: line segments vertex ids, like vertexId0, vertexId1, vertexId2 ... ... vertexIdn
         // isSectionClose: whether vertexId0 is connected with vertexIdn
         // pathVertexIds: shortest path between sectionVertexIds
-        static ErrorCode ComputeApproximateGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance);
+        static ErrorCode ComputeApproximateGeodesics(const ITriMesh* triMesh, const std::vector<Int>& sectionVertexIds, 
+            bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance, const IMeshDistance* meshDistance = NULL);
         // Internal use api
-        static ErrorCode _ComputeApproximateGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance);
+        static ErrorCode _ComputeApproximateGeodesics(const ITriangleList* triangles, const std::vector<Int>& sectionVertexIds, 
+            bool isSectionClose, std::vector<Int>& pathVertexIds, Real& distance, const IMeshDistance* meshDistance = NULL);
         
         // note: path will pass through mesh edge, thus it is an accurate geodesics in mesh
         // sectionVertexIds: line segments vertex ids, like vertexId0, vertexId1, vertexId2 ... ... vertexIdn
@@ -52,6 +96,12 @@ namespace GPP
 
         static ErrorCode ComputeGaussCurvature(const ITriMesh* triMesh, std::vector<Real>& curvature);
 
+        static ErrorCode ComputePrincipalCurvature(const ITriMesh* triMesh, std::vector<Real>& minCurvature,
+            std::vector<Real>& maxCurvature, std::vector<Vector3>& minDirs, std::vector<Vector3>& maxDirs);
+
+        // If the rays starting from the vertex can not be intersected with the mesh, the thickness value is 0.0 and the isInfiniteValue there is true
+        static ErrorCode ComputeThickness(const ITriMesh* triMesh, std::vector<Real>& thickness, std::vector<bool> *isInfiniteValue = NULL);
+
         // Compute the triangle area
         static Real TriangleArea(const Vector3& triangleV0, const Vector3& triangleV1, const Vector3& triangleV2);
 
@@ -70,6 +120,13 @@ namespace GPP
         // Compute distance from point to one OBB bounding-box
         static ErrorCode PointToBoundingBoxDistance(const Vector3& point, const Obb& boundingBox, 
             Real& distance, Vector3* projectCoord = NULL, bool *isInside = NULL);
+
+        // Compute the intersection point start from the point rayOrigin along the direction rayDirection.
+        // NOTE: intersectCoord = V0 * (1.0 - u - v) + V1 * u + V2 * v;
+        // NOTE: if isIntersectInside is false, other output parameter are meaning-less.
+        static ErrorCode RayToTriangleIntersect(const Vector3& rayOrigin, const Vector3& rayDirection, 
+            const Vector3& triangleV0, const Vector3& triangleV1, const Vector3& triangleV2,
+            bool &isIntersected, Real* distance = NULL, Vector3* intersectCoord = NULL, Real* intersectU = NULL, Real* intersectV = NULL);
 
         // Compute the distance from one point to the mesh. 
         // NOTE: this API calculate the accurate distance but it is slow when calling repeatly.

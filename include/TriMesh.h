@@ -37,7 +37,7 @@ namespace GPP
     class GPP_EXPORT TriMesh : public ITriMesh
     {
     public:
-        // In the default constructor, TriMesh has no color, vertex textre coordinate, triangle texture coordinate information
+        // In the default constructor, TriMesh has no color, vertex texture coordinate, triangle texture coordinate information
         // User can set the information in the constructor or use SetHas** api to allocate the memory
         TriMesh();
         TriMesh(bool hasColor, bool hasVertexTexCoord, bool hasTriangleTexCoord);

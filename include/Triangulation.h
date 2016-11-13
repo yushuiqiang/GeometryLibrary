@@ -26,7 +26,7 @@ namespace GPP
         // Tesselated mesh vertex will be in order: triMesh, pointsOnFace, pointsOnEdge
         // triMesh's normal is not updated
         static ErrorCode MutualTessellation(ITriMesh* triMesh, const std::vector<PointOnFace>* pointsOnFace, 
-            const std::vector<PointOnEdge>* pointsOnEdge);
+            const std::vector<PointOnEdge>* pointsOnEdge, std::vector<bool>* pointValidFlags);
 
         // sharpAngle: if edge faces' angle is larger than sharpAngle, the edge will be sharp edge and its vertex position will be fixed. 
         // sharpAngle range (0, 180 * ONE_RADIAN)

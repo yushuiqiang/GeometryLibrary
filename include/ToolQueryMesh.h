@@ -36,11 +36,13 @@ namespace GPP
         ErrorCode QueryNearestTriangle(const Vector3& queryCoord, PointOnFace* projectPoint, Real* distance = NULL, Vector3* projectCoord = NULL) const;
         ErrorCode QueryNearestTriangles(const std::vector<Vector3>& queryCoords, std::vector<PointOnFace>* projectPoints, std::vector<Real>* distances = NULL, std::vector<Vector3>* projectCoords = NULL) const;
 
-        const ITriMesh* GetReferenceMesh() const;
+        // It will compute the intersection points with the ray and the triMesh. And it will return the nearest k (=maxIntersectCount) intersections.
+        // If there are less intersections than the maxIntersectCount, only the real number of intersection points are returned.
+        // NOTE: if there is no intersecting point, the output will be with zero size.
+        ErrorCode RayIntersections(const Vector3& rayOrigin, const Vector3& rayDirection, Int maxIntersectCount, std::vector<PointOnFace>* intersectPoints,
+            std::vector<Real>* distances = NULL, std::vector<Vector3>* intersectCoords = NULL) const;
 
-        // The following functions are internal use only.
-        ErrorCode _CollectAllBoundingBox(std::vector<Obb>& boundingBoxes, std::vector<Int>* depths);
-        ErrorCode _CollectBoundingBoxNearPoint(const Vector3& point, Real radius, std::vector<Obb>& boundingBoxes, std::vector<Int>* depths, std::vector<Vector3>* relavantVoxelCenters = NULL);
+        const ITriMesh* GetReferenceMesh() const;
 
     private:
         QueryMeshToolMethod mMethod;

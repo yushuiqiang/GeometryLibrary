@@ -33,6 +33,9 @@
 #include "DeformPointList.h"
 #include "FitPointCloud.h"
 
+#include "OptimiseCurve.h"
+#include "OptimiseMapping.h"
+
 #include "IPointList.h"
 #include "IPointCloud.h"
 #include "PointCloud.h"

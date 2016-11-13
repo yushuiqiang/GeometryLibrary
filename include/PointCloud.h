@@ -7,6 +7,8 @@ namespace GPP
     class GPP_EXPORT PointCloud : public IPointCloud
     {
     public:
+        // In the default constructor, PointCloud has no normal, no color information
+        // User can set the information in the constructor or use SetHas** api to allocate the memory
         PointCloud();
         PointCloud(bool hasNormal, bool hasColor);
 

@@ -5,8 +5,9 @@
 
 ====================================================================================================*/
 #pragma once
-#include "GPP.h"
-#include "TriMesh.h"
+#include "GppDefines.h"
+#include "Vector3.h"
+#include <vector>
 
 namespace GPP
 {
@@ -75,5 +76,8 @@ namespace GPP
 
         // This API will expand the image pixels using neighbor colors. Currently, internal use only.
         static ErrorCode _ExpandImagePixels(std::vector<Vector3>& imageData, Int imageWidth, Int imageHeight, const std::vector<bool>& isPixelInsideTags);
+
+        static bool _IsPointInTriangle(const Real triangleUVs[6], Int x, Int y);
+
     };
 }
