@@ -8,6 +8,7 @@
 #include "IPointCloud.h"
 #include "ITriMesh.h"
 #include "Matrix4x4.h"
+#include "Color4.h"
 #include <vector>
 
 namespace GPP
@@ -50,7 +51,7 @@ namespace GPP
         // textureCoords: constrained vertex texture coordinates: coordX_0, coordY_0, coordX_1, coordY_1...... range: [0, 1]
         // vertexColors: constrained vertex colors
         static ErrorCode TuneTextureImageByVertexColor(const std::vector<Real>& textureCoords, const std::vector<Vector3>& vertexColors, 
-            Int imageWidth, Int imageHeight, const std::vector<PixelType> pixelTypes, std::vector<Vector3>& textureColors);
+            Int imageWidth, Int imageHeight, const std::vector<PixelType> pixelTypes, std::vector<Color4>& textureColors);
 
 
         // Overview: texture image color will be tuned into one consistent region by constrained vertex color
@@ -58,14 +59,14 @@ namespace GPP
         // vertexFlags: 1 - color constraints; 0 - not constraints
         // faceVertexIds: a list of the triangle vertex indices. The size of it must be a multiple of three.
         static ErrorCode TuneImageByTriangleColor(const std::vector<Int>& vertexCoords, const std::vector<Vector3>& vertexColors,
-            const std::vector<bool> vertexFlags, const std::vector<Int>& faceVertexIds, 
-            Int imageWidth, Int imageHeight, std::vector<Vector3>& imageColors);
+            const std::vector<Int>& vertexFlags, const std::vector<Int>& faceVertexIds, 
+            Int imageWidth, Int imageHeight, std::vector<Color4>& imageColors);
 
 
         // Overview: texture image color will be tuned into one consistent region by constrained point color
         // pointCoords: point's coordinates in image space: x0 y0 x1 y1 ......
         static ErrorCode TuneImageByPointColor(const std::vector<Int>& pointCoords, const std::vector<Vector3>& pointColors,
-            Int imageWidth, Int imageHeight, std::vector<Vector3>& imageColors);
+            Int imageWidth, Int imageHeight, std::vector<Color4>& imageColors);
 
 
         // colorIds: vertices having the same colorId should have consistent color

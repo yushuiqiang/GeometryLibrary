@@ -7,6 +7,7 @@
 #pragma once
 #include "ITriMesh.h"
 #include <vector>
+#include <map>
 
 namespace GPP
 {
@@ -17,7 +18,8 @@ namespace GPP
         ~ConsolidateMesh();
 
         // Normal of result triMesh is not updated here
-        static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh);
+        // insertedVertexIdMap: inserted vertices are copied from original vertices, this map is from inserted vertex id to copied vertex id.
+        static ErrorCode MakeTriMeshManifold(ITriMesh* triMesh, std::map<Int, Int>* insertVertexIdMap = NULL);
 
         // isolation value is between [0, 1], smaller value means more isolated
         static ErrorCode CalculateIsolation(const ITriMesh* triMesh, std::vector<Real>* isolation);

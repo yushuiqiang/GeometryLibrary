@@ -32,6 +32,7 @@ namespace GPP
 
         // triMesh: new triangles will be added near the cutting plane, since plane will cut triangle into sub-triangles
         // triangleFlags: 1 - above plane, 0 - under plane
-        static ErrorCode SplitByPlane(ITriMesh* triMesh, const Plane3* plane, std::vector<bool>* triangleFlags);
+        static ErrorCode SplitByPlane(ITriMesh* triMesh, const Plane3* plane, std::vector<bool>* triangleFlags,
+            const std::vector<Real>* vertexFields = NULL, std::vector<Real>* insertedVertexFields = NULL);
     };
 }

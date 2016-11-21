@@ -7,6 +7,7 @@
 #pragma once
 #include "GppDefines.h"
 #include "Vector3.h"
+#include "Color4.h"
 #include <vector>
 
 namespace GPP
@@ -54,8 +55,8 @@ namespace GPP
         //                     The Int values indicate the result pixel types: 0 -- unfilled pixels, 1 -- expanded pixels, 2 -- filled pixels
         // NOTE: texCoorinates will be trimmed into [0, 1]
         static ErrorCode CreateTextureImageByVertexColors(const std::vector<Real>& texCoordinates, const std::vector<Int>& faceTextureIds,  
-            const std::vector<Vector3>& texColors,
-            Int outputImageWidth, Int outputImageHeight, std::vector<Vector3>& outputImageData, std::vector<Int>* pixelResultInfos = NULL);
+            const std::vector<Color4>& texColors,
+            Int outputImageWidth, Int outputImageHeight, std::vector<Color4>& outputImageData, std::vector<Int>* pixelResultInfos = NULL);
 
         // This API will generate texture image for a triangle mesh using the reference images and the vertex to image mappings.
         // Parameters:
@@ -71,12 +72,12 @@ namespace GPP
         //                      For pixel with value >=3, (value - 3) is the replace image index at that pixel.
         // NOTE: texCoorinates will be trimmed into [0, 1]
         static ErrorCode CreateTextureImageByRefImages(const std::vector<Real>& texCoordinates, const std::vector<Int>& faceTextureIds,
-            const std::vector<ImageColorId>& texColorIds, const std::vector<std::vector<Vector3> > refImageListData, const std::vector<Int>& refImageInfos,
-            Int outputImageWidth, Int outputImageHeight, std::vector<Vector3>& outputImageData, std::vector<Int>* pixelResultInfos = NULL);
+            const std::vector<ImageColorId>& texColorIds, const std::vector<std::vector<Color4> >& refImageListData, const std::vector<Int>& refImageInfos,
+            Int outputImageWidth, Int outputImageHeight, std::vector<Color4>& outputImageData, std::vector<Int>* pixelResultInfos = NULL);
 
         // This API will expand the image pixels using neighbor colors. Currently, internal use only.
-        static ErrorCode _ExpandImagePixels(std::vector<Vector3>& imageData, Int imageWidth, Int imageHeight, const std::vector<bool>& isPixelInsideTags);
-
+        static ErrorCode _ExpandImagePixels(std::vector<Color4>& imageData, Int imageWidth, Int imageHeight, const std::vector<bool>& isPixelInsideTags);
+        
         static bool _IsPointInTriangle(const Real triangleUVs[6], Int x, Int y);
 
     };

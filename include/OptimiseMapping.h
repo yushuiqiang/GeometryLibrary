@@ -12,7 +12,7 @@ namespace GPP
         OptimiseMapping();
         ~OptimiseMapping();
 
-        static ErrorCode OptimiseImageColorIdOnMesh(const ITriMesh* triMesh, const std::vector<bool>& fixFlags, 
+        static ErrorCode OptimiseImageColorIdOnMesh(const ITriMesh* triMesh, const std::vector<Int>& fixFlags, 
             std::vector<ImageColorId>& imageColorIds);
     };
 }
