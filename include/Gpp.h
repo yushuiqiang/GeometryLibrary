@@ -42,11 +42,13 @@
 #include "ITriMesh.h"
 #include "TriMesh.h"
 #include "HalfMesh.h"
+#include "TopologyMesh.h"
 #include "Parser.h"
 #include "ToolMesh.h"
 #include "ToolPointCloud.h"
 #include "SubTriMesh.h"
 #include "ToolQueryMesh.h"
+#include "ToolAnn.h"
 
 #include "DumpInfo.h"
 #include "Matrix4x4.h"
