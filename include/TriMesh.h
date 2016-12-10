@@ -127,6 +127,9 @@ namespace GPP
     extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
         std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL, bool oneWayMap = true);
 
+    extern ErrorCode ConstructVertexNeighborInfo(const ITriMesh* triMesh, const std::vector<Int>& vertices, 
+        std::vector<EdgeInfo>& edgeInfoList);
+
     // store the point on edge informations:
     // if the point is exactly on the mesh vertex, the vertex id is stored in mVertexIdStart, and mVertexIdEnd is -1.
     // if the point is on a mesh edge, the two Ints store the two vertex ids for the edge, and the weight indicate the proportion

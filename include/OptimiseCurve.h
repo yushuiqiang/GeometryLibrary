@@ -14,7 +14,7 @@ namespace GPP
         // curveList: polyline vertex ids. 
         // smoothWeight: [0, 1]
         // iterationCount >= 1
-        static ErrorCode SmoothCurveOnMesh(ITriMesh* triMesh, const std::vector<Int>& curveList, bool isCurveClose,
+        static ErrorCode SmoothCurveOnMesh(ITriMesh* triMesh, const std::vector<Int>& curveList, bool isCurveClose, Real sharpAngle,
             Real smoothWeight, Int iterationCount);
 
 
@@ -22,12 +22,12 @@ namespace GPP
             Real diffuseSize, std::vector<Int>& topCurve, std::vector<Int>& downCurve, std::vector<Int>& stringTriangles);
 
 
-        static ErrorCode MakeCurveBijective(ITriMesh* triMesh, std::vector<Int>& topCurve, std::vector<Int>& downCurve, 
-            bool isCurveClose);
+        static ErrorCode MakeCurveBijective(ITriMesh* triMesh, const std::vector<Int>& centerCurve, std::vector<Int>& topCurve, 
+            std::vector<Int>& downCurve, bool isCurveClose);
 
 
         static ErrorCode MakeCurvePairPerpendicular(ITriMesh* triMesh, const std::vector<Int>& centerCurve,
-            const std::vector<Int>& topCurve, const std::vector<Int>& downCurve, bool isCurveClose);
+            const std::vector<Int>& topCurve, const std::vector<Int>& downCurve, bool isCurveClose, Real sharpAngle);
 
         
         static ErrorCode SubdividePolyline(std::vector<GPP::Vector3>& pointList, int subdCount, bool isClose);

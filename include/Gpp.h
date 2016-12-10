@@ -21,6 +21,7 @@
 #include "Remesh.h"
 #include "SampleMesh.h"
 #include "Triangulation.h"
+#include "DeformMesh.h"
 
 #include "ConsolidatePointCloud.h"
 #include "FusePointCloud.h"
@@ -55,3 +56,4 @@
 #include "Plane3.h"
 #include "Vector2.h"
 #include "Vector3.h"
+#include "Profiler.h"

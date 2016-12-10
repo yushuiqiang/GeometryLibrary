@@ -20,9 +20,14 @@ namespace GPP
         void Set(Int imageIndex, Int localX, Int localY);
         void Set(const ImageColorId& colorId);
 
-        Int GetImageIndex()const;
-        Int GetLocalX()const;
-        Int GetLocalY()const;
+        Int GetImageIndex() const;
+        void SetImageIndex(Int imageIndex);
+
+        Int GetLocalX() const;
+        void SetLocalX(Int localX);
+        
+        Int GetLocalY() const;
+        void SetLocalY(Int localY);
 
     private:
         Int mImageIndex;    // which image the color belongs to
