@@ -32,8 +32,9 @@ namespace GPP
         // neighborCount: range >= 4, usually be 12, larger value will make color fusing more
         // colorIds: points having the same colorId should have consistent color
         // pointColors: range[0, 1]
+        // sharpColorDiff: rangge[0, sqrt(3)]. Point color will be fixed on colorId boundary if color difference between neighbors is larger than sharpColorDiff
         static ErrorCode TuneColorFromMultiFrame(const IPointCloud* pointCloud, Int neighborCount, 
-            const std::vector<Int>& colorIds, std::vector<Vector3>& pointColors);
+            const std::vector<Int>& colorIds, std::vector<Vector3>& pointColors, Real sharpColorDiff = 0.8);
 
         
         // Point cloud should have been aligned before calling this api
