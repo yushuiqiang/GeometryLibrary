@@ -32,7 +32,9 @@ namespace GPP
         // targetVertexCount: controling simplified vertex count. Usually *targetVertexCount == removingVertices.size()
         // sharpAngle: if edge faces' angle is larger than sharpAngle, the edge will be sharp edge and its vertex position will be fixed. 
         // sharpAngle range (0, 180 * ONE_RADIAN)
+        // vertexSharpFlags: vertex flag on sharp edge is 1; sharp edge is defined from sharpAngle
         static ErrorCode SimplifyByRemovingVertex(ITriMesh* triMesh, const std::vector<Int>& removingVertices, 
-            std::vector<Int>* vertexMap, const Int* targetVertexCount, const Real* sharpAngle);
+            std::vector<Int>* vertexMap, const Int* targetVertexCount, const Real* sharpAngle, 
+            std::vector<bool>* vertexSharpFlags);
     };
 }

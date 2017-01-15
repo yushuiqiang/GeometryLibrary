@@ -37,7 +37,7 @@ namespace GPP
     class GPP_EXPORT PrincipalCurvatureDistance : public IMeshDistance
     {
     public:
-        PrincipalCurvatureDistance(const ITriangleList* triMesh, const std::vector<Vector3>* minDirs, const std::vector<Vector3>* maxDirs,
+        PrincipalCurvatureDistance(const ITriangleList* triMesh, const std::vector<Vector3>* alignDirs,
             const std::vector<Real>* minCurvature, const std::vector<Real>* maxCurvature, Real weight);
 
         virtual Real GetEdgeLength(Int vertexId0, Int vertexId1) const;
@@ -46,8 +46,7 @@ namespace GPP
 
     private:
         const ITriangleList* mTriMesh;
-        const std::vector<Vector3>* mMinDirs;
-        const std::vector<Vector3>* mMaxDirs;
+        const std::vector<Vector3>* mAlignDirs;
         const std::vector<Real>* mMinCurvature;
         const std::vector<Real>* mMaxCurvature;
         Real mWeight;

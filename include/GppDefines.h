@@ -69,4 +69,7 @@ namespace GPP
 
     // Active library:
     extern GPP_EXPORT bool SetActivationKey(std::string key);
+
+    // count >= 0: 0 - it will auto-allocate thread according CPU processor count.
+    extern GPP_EXPORT void SetThreadCount(Int count);
 }

@@ -44,9 +44,11 @@ namespace GPP
 
         const ITriMesh* GetReferenceMesh() const;
 
+        void SetMaxSearchRadius(Real maxRadius);
     private:
         QueryMeshToolMethod mMethod;
         MeshQueryTree* mpQueryTree;
         const ITriMesh* mpTriMesh;
+        Real mMaxSearchRadius;
     };
 }

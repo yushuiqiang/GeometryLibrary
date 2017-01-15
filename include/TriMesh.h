@@ -40,7 +40,7 @@ namespace GPP
         // In the default constructor, TriMesh has no color, vertex texture coordinate, triangle texture coordinate information
         // User can set the information in the constructor or use SetHas** api to allocate the memory
         TriMesh();
-        TriMesh(bool hasColor, bool hasVertexTexCoord, bool hasTriangleTexCoord);
+        TriMesh(bool hasVertexColor, bool hasVertexTexCoord, bool hasTriangleTexCoord);
 
         virtual Int GetVertexCount(void) const;
         virtual Int GetTriangleCount(void) const;
@@ -70,10 +70,12 @@ namespace GPP
         virtual void Clear(void);
 
         // Set** api will allocate memory for the correspondant information
-        void SetHasColor(bool has);
-        bool HasColor(void) const;
+        void SetHasVertexColor(bool has);
+        bool HasVertexColor(void) const;
         void SetHasVertexTexCoord(bool has);
         bool HasVertexTexCoord(void) const;
+        void SetHasTriangleColor(bool has);
+        bool HasTriangleColor(void) const;
         void SetHasTriangleTexCoord(bool has);
         bool HasTriangleTexCoord(void) const;
 
@@ -88,6 +90,8 @@ namespace GPP
         void SetVertexColor(Int vid, const Vector3& color);
         Vector3 GetVertexTexcoord(Int vid) const;
         void SetVertexTexcoord(Int vid, const Vector3& texcoord);
+        Vector3 GetTriangleColor(Int fid, Int localVid) const;
+        void SetTriangleColor(Int fid, Int localVid, const Vector3& color);
         Vector3 GetTriangleTexcoord(Int fid, Int localVid) const;
         void SetTriangleTexcoord(Int fid, Int localVid, const Vector3& texcoord);
         
@@ -104,9 +108,11 @@ namespace GPP
         std::vector<TriangleInfo*> mTriangleList;
         std::vector<Vector3> mVertexColorList;
         std::vector<Vector3> mVertexTexCoordList;
+        std::vector<Vector3> mTriangleColorList;
         std::vector<Vector3> mTriangleTexCoordList;
-        bool mHasColor;
+        bool mHasVertexColor;
         bool mHasVertexTexCoord;
+        bool mHasTriangleColor;
         bool mHasTriangleTexCoord;
         Vector3 mDefaultColor;
     };
@@ -126,6 +132,10 @@ namespace GPP
     // oneWayMap: if true, every edge will be in vertexEdgeMap only once like vertexEdgeMap[smallVertexId][largeVertexId]
     extern ErrorCode ConstructEdgeInfo(const ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
         std::vector<std::map<Int, Int> >* vertexEdgeMap = NULL, bool oneWayMap = true);
+
+    extern ErrorCode InsertVertexOnEdge(ITriMesh* triMesh, std::vector<EdgeInfo>& edgeInfoList, 
+        std::vector<std::map<Int, Int> >& vertexEdgeMap, bool oneWayMap, Int startVertexId, Int endVertexId, 
+        const Vector3& insertCoord, Int* insertVertexId);
 
     extern ErrorCode ConstructVertexNeighborInfo(const ITriMesh* triMesh, const std::vector<Int>& vertices, 
         std::vector<EdgeInfo>& edgeInfoList);

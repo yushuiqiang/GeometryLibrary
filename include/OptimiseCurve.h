@@ -1,6 +1,7 @@
 #pragma once
 #include "GppDefines.h"
-#include "ITriMesh.h"
+#include "TriMesh.h"
+#include "Plane3.h"
 #include <vector>
 
 namespace GPP
@@ -18,7 +19,7 @@ namespace GPP
             Real smoothWeight, Int iterationCount);
 
 
-        static ErrorCode ApproximateOffsetCurveOnMesh(const ITriMesh* triMesh, const std::vector<Int>& centerCurve, bool isCurveClose,
+        static ErrorCode ApproximateOffsetCurveOnMesh(ITriMesh* triMesh, std::vector<Int>& centerCurve, bool isCurveClose,
             Real diffuseSize, std::vector<Int>& topCurve, std::vector<Int>& downCurve, std::vector<Int>& stringTriangles);
 
 
@@ -26,10 +27,10 @@ namespace GPP
             std::vector<Int>& downCurve, bool isCurveClose);
 
 
-        static ErrorCode MakeCurvePairPerpendicular(ITriMesh* triMesh, const std::vector<Int>& centerCurve,
-            const std::vector<Int>& topCurve, const std::vector<Int>& downCurve, bool isCurveClose, Real sharpAngle);
+        static ErrorCode SubdividePolyline(std::vector<GPP::Vector3>& pointList, int subdCount, bool isClose);
 
         
-        static ErrorCode SubdividePolyline(std::vector<GPP::Vector3>& pointList, int subdCount, bool isClose);
+        static ErrorCode ConnectVertexByCuttingPlane(const ITriMesh* triMesh, Int startId, Int endId, const Plane3& cuttingPlane,
+            std::vector<PointOnEdge>& pathPointInfos);
     };
 }
